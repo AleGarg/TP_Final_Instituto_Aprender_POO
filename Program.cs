@@ -1,6 +1,11 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using System;
 
-app.MapGet("/", () => "Hello World!");
-
-app.Run();
+namespace InstitutoAprender
+{
+    class Program{
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Comienzo");
+        }
+    }
+}
