@@ -1,9 +1,12 @@
 🎓 Proyecto Final: Instituto Educativo "Aprender+"
+
 Este repositorio contiene la implementación del sistema de gestión para el Instituto Educativo "Aprender+", una aplicación desarrollada utilizando Programación Orientada a Objetos (POO) en C#.
 
 El sistema permite la administración completa de cursos, inscripciones de alumnos, bajas, registro de calificaciones y generación de diversos listados e informes académicos.
 
-🏗️ Arquitectura del Sistema (Clases Principales): El diseño se basa en un conjunto de clases interconectadas que modelan las entidades del instituto, siguiendo los principios de la Programación Orientada a Objetos:
+🏗️ Arquitectura del Sistema (Clases Principales)
+
+El diseño se basa en un conjunto de clases interconectadas que modelan las entidades del instituto, siguiendo los principios de la Programación Orientada a Objetos:
 
 | Clase              | Atributos Clave (Propiedades)                                                   | Métodos Clave (Funcionalidad)                                                        | Relación                                                          |
 | ------------------ | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
@@ -14,7 +17,9 @@ El sistema permite la administración completa de cursos, inscripciones de alumn
 | Instituto          | nombre (string), listaCursos (List<Curso>), listaAlumnos (List<Alumno>)         | cargarJson(), guardarJson(), inscribirAlumno(), eliminarAlumno(), transferirAlumno() | Clase controladora que maneja la lógica de negocio y colecciones. |
 | CupoLlenoException | mensaje (string)                                                                | (Excepción personalizada)                                                            | Se lanza al exceder la capacidad de un curso.                     |
 
-⚙️ Funcionalidades del Sistema: La aplicación principal se ejecuta a través de un menú de opciones  que permite acceder a las siguientes funcionalidades:
+⚙️ Funcionalidades del Sistema
+
+La aplicación principal se ejecuta a través de un menú de opciones  que permite acceder a las siguientes funcionalidades:
 
 1. Gestión de Inscripciones y Alumnos
 
@@ -39,10 +44,13 @@ El sistema permite la administración completa de cursos, inscripciones de alumn
 | Listar cursos              | Detalla cada curso, su docente responsable y la cantidad de inscriptos actuales.            |
 | Listar alumnos multi-curso | Identifica y lista a los alumnos que se encuentran inscriptos en más de un curso.           |
 
-4. Persistencia de Datos: El sistema está diseñado para guardar y cargar el estado completo del instituto, incluyendo alumnos, cursos e inscripciones.
+4. Persistencia de Datos
+
+El sistema está diseñado para guardar y cargar el estado completo del instituto, incluyendo alumnos, cursos e inscripciones.
 - Guardar/Cargar Datos: Implementa la funcionalidad para persistir los datos completos del instituto. La información puede guardarse en archivos de texto o, preferiblemente, utilizando el formato JSON para facilitar la serialización y deserialización de objetos complejos.
 
 🚀 Implementación en C#
+
 La implementación en C# debe utilizar las capacidades del lenguaje para:
 1. Colecciones Genéricas: Usar List<T> (ej: List<Curso>, List<Alumno>) para gestionar dinámicamente las entidades.
 2. Excepciones Personalizadas: Implementar y lanzar CupoLlenoException para manejar el flujo de control ante una inscripción no válida.
