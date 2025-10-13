@@ -19,6 +19,7 @@ El diseño se basa en un conjunto de clases interconectadas que modelan las enti
 La aplicación principal se ejecuta a través de un menú de opciones  que permite acceder a las siguientes funcionalidades:
 
 1. Gestión de Inscripciones y Alumnos
+
 | Opción                       | Descripción                                                                                           | Validación Clave                                                                             |
 | ---------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | Inscribir alumno en un curso | Permite registrar un nuevo alumno en el instituto si no existe, e inscribirlo en un curso específico. | Lanza CupoLlenoException si el curso excede su cupo.                                         |
@@ -26,12 +27,14 @@ La aplicación principal se ejecuta a través de un menú de opciones  que permi
 | Transferir alumno            | Mueve un alumno de un curso origen a un curso destino.                                                | Valida la existencia del alumno en el curso origen y el cupo disponible en el curso destino. |
 
 2. Gestión Académica y Calificaciones
+
 | Opción                    | Descripción                                                             |
 | ------------------------- | ----------------------------------------------------------------------- |
 | Registrar nota de examen  | Permite asignar una calificación a un alumno para un curso específico.  |
 | Promedio general de notas | Muestra el promedio general de las notas para cada curso del instituto. |
 
 3. Listados e Informes
+
 | Opción                     | Descripción del Reporte                                                                     |
 | -------------------------- | ------------------------------------------------------------------------------------------- |
 | Listar alumnos de un curso | Muestra el nombre, DNI y la nota (si está registrada) de cada alumno inscripto en un curso. |
