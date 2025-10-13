@@ -10,3 +10,5 @@ obj/TP_Final_Instituto_Aprender_POO.csproj.nuget.dgspec.json
 obj/TP_Final_Instituto_Aprender_POO.csproj.nuget.g.props
 obj/TP_Final_Instituto_Aprender_POO.csproj.nuget.g.targets
 .vscode/settings.json
+obj/
+bin/
