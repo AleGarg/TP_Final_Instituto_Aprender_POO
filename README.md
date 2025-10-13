@@ -43,11 +43,10 @@ La aplicación principal se ejecuta a través de un menú de opciones  que permi
 
 4. Persistencia de Datos
 El sistema está diseñado para guardar y cargar el estado completo del instituto, incluyendo alumnos, cursos e inscripciones.
-
-Guardar/Cargar Datos: Implementa la funcionalidad para persistir los datos completos del instituto. La información puede guardarse en archivos de texto o, preferiblemente, utilizando el formato JSON para facilitar la serialización y deserialización de objetos complejos.
+- Guardar/Cargar Datos: Implementa la funcionalidad para persistir los datos completos del instituto. La información puede guardarse en archivos de texto o, preferiblemente, utilizando el formato JSON para facilitar la serialización y deserialización de objetos complejos.
 
 🚀 Implementación en C#
 La implementación en C# debe utilizar las capacidades del lenguaje para:
-Colecciones Genéricas: Usar List<T> (ej: List<Curso>, List<Alumno>) para gestionar dinámicamente las entidades.
-Excepciones Personalizadas: Implementar y lanzar CupoLlenoException para manejar el flujo de control ante una inscripción no válida.
-Serialización JSON: Utilizar librerías como System.Text.Json o Newtonsoft.Json para los métodos de guardarJson() y cargarJson().
+1. Colecciones Genéricas: Usar List<T> (ej: List<Curso>, List<Alumno>) para gestionar dinámicamente las entidades.
+2. Excepciones Personalizadas: Implementar y lanzar CupoLlenoException para manejar el flujo de control ante una inscripción no válida.
+3. Serialización JSON: Utilizar librerías como System.Text.Json o Newtonsoft.Json para los métodos de guardarJson() y cargarJson().
