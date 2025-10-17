@@ -1,50 +1,54 @@
 using System;
+using InstitutoAprender;
 
 namespace ejemplo
 {
-	public class alumno
+	public class Alumno : Persona
 	{
 		// Atributos privados
-		private string nombre;
-		private int legajo;
-		private double nota;
-		
+		private int Legajo { get; }
+		private double Nota { get; }
+
 		// Constructor vacío la clase alumno
-		public Alumno()
-		{
-			// Inicializacion para ver los los string int y double 
-			this.nombre = "";
-			this.legajo = 0;
-			this.nota = 0.0;
-		}
-		
+
+		// Alejo 17-10: No sé si haga falta esto, por si las dudas no lo borro pero lo comento
+
+		// public Alumno()
+		// {
+		// 	// Inicializacion para ver los los string int y double 
+		// 	this.nombre = "";
+		// 	this.legajo = 0;
+		// 	this.nota = 0.0;
+		// }
+
 		// Construimos los parametros 
-		public alumno(string nombre, int legajo, double nota):base(nombre, apellido, dni)
+		public Alumno(string nombre, string apellido, int dni, int legajo, double nota) : base(nombre, apellido, dni)
 		{
-			this.nombre = nombre;
-			this.legajo = legajo;
-			this.nota = nota;
+			this.Legajo = legajo;
+			this.Nota = nota;
 		}
 		
 		// Métodos públicos para leer los datos con get 
-		public string Getnombre()
-		{
-			return nombre;
-		}
 		
-		public int Getlegajo()
-		{
-			return legajo;
-		}
+		// Alejo 17-10: Esto también se puede simplificar arriba (poniendo solo {get; set;} )
+		// public string Getnombre()
+		// {
+		// 	return nombre;
+		// }
 		
-		public double Getnota()
-		{
-			return nota;
-		}
+		// public int Getlegajo()
+		// {
+		// 	return legajo;
+		// }
+		
+		// public double Getnota()
+		// {
+		// 	return nota;
+		// }
 		
 		public void mostrardatos()
 		{
-			Console.WriteLine("Alumno: " + nombre + " | Legajo: " + legajo + " | Nota: " + nota);
+			Console.WriteLine("Alumno: " + Nombre + " " + Apellido + "| Legajo: " + Legajo + " | Nota: " + Nota);
 		}
 	}
 }
