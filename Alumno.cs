@@ -6,10 +6,30 @@ namespace InstitutoAprender
 	public class Alumno : Persona
 	{
 		// Atributos privados
-		private int Legajo { get; }
+		private int legajo;
+		private double nota;
 
-		// PREGUNTAR SI ESTO ESTÁ BIEN (sino no me deja acceder a Nota desde Curso)
-		public double Nota { get; private set; }
+		public int Legajo
+        {
+			set {
+				legajo = value;
+			}
+			get
+			{
+				return legajo;
+			} 
+        }
+		public double Nota
+        {
+			get
+			{
+				return nota;
+			}
+            set
+            {
+				nota = value;
+            }
+        }
 
 		// Constructor vacío la clase alumno
 
@@ -48,7 +68,7 @@ namespace InstitutoAprender
 		// 	return nota;
 		// }
 		
-		public void MostrarDatos()
+		public override void MostrarDatos()
 		{
 			Console.WriteLine($"Alumno: {Nombre} {Apellido} | Legajo: {Legajo} | Nota: {Nota}");
 		}

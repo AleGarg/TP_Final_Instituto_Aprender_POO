@@ -18,8 +18,6 @@ namespace InstitutoAprender
             // \n es el salto de línea (hace un enter)
             Console.WriteLine($"Nombre: {bestiaDeCalchin.Nombre} {bestiaDeCalchin.Apellido}\nDNI: {bestiaDeCalchin.Dni}\nSueldo: {bestiaDeCalchin.Sueldo}");
 
-            Console.WriteLine($"Nombre: {bestiaDeCalchin.Nombre} {bestiaDeCalchin.Apellido}\nDNI: {bestiaDeCalchin.Dni}\nSueldo: {bestiaDeCalchin.Sueldo}");
-
             // CREAR INSTITUTO
             // Al parecer se puede hacer un constructor sobrecargado, ver luego
             Instituto AprenderMas = new Instituto("Aprender+", new List<Curso>(), new List<Alumno>());
@@ -55,26 +53,41 @@ namespace InstitutoAprender
             AprenderMas.InscribirAlumno(alumno4);
 
             List<Alumno> alumnosProgramacion = new List<Alumno>() { alumno1, alumno2, alumno3, alumno4 };
+            
+            // List<Alumno> alumnosProgramacion = new List<Alumno>();
 
             // Crear cursos
-            Curso curso1 = new Curso("Programación con objetos", Docente1, 5, alumnosProgramacion);
-            Curso curso2 = new Curso("Matemática", Docente2, 5, alumnosProgramacion);
-            Curso curso3 = new Curso("Algebra", Docente3, 5, alumnosProgramacion);
-            Curso curso4 = new Curso("Taller de Ingenieria", Docente4, 8, alumnosProgramacion);
+            Curso progObjetos = new Curso("Programación con objetos", Docente1, 5, alumnosProgramacion);
+            Curso mat = new Curso("Matemática", Docente2, 20, alumnosProgramacion);
+            Curso alg = new Curso("Algebra", Docente3, 20, alumnosProgramacion);
+            Curso tallerIng = new Curso("Taller de Ingenieria", Docente4, 20, alumnosProgramacion);
+
+            Console.WriteLine($"CANTIDAD DE ALUMNOS PROG OBJ {progObjetos.CantidadInscriptos}");
+
+
+            // TRANSFERIR UN ALUMNO DE PROGRAMACION A MATEMATICA
+            Console.WriteLine("\n\n\n");
+            // progObjetos.transferirAlumnos(mat, alumno1);
+            Console.WriteLine("\n\n\n");
 
             // Crear instituto
-            AprenderMas.AgregarCurso(curso1);
-            AprenderMas.AgregarCurso(curso2);
-            AprenderMas.AgregarCurso(curso3);
-            AprenderMas.AgregarCurso(curso4);
+            AprenderMas.AgregarCurso(progObjetos);
+            AprenderMas.AgregarCurso(mat);
+            AprenderMas.AgregarCurso(alg);
+            AprenderMas.AgregarCurso(tallerIng);
 
+            Console.WriteLine("\nMOSTRANDO INSCRIPTOS: \n");
+            progObjetos.MostrarInscriptos();
+
+            Console.WriteLine($"CANTIDAD DE ALUMNOS PROG OBJ {progObjetos.CantidadInscriptos()}");
             // Agregar alumnos al curso
+            Console.WriteLine($"Intentando añadir alumnos...");
             try
             {
-                curso1.AgregarAlumno(alumno1);
-                curso2.AgregarAlumno(alumno2);
-                curso3.AgregarAlumno(alumno3);
-                curso4.AgregarAlumno(alumno4);
+                progObjetos.AgregarAlumno(alumno1);
+                mat.AgregarAlumno(alumno2);
+                alg.AgregarAlumno(alumno3);
+                tallerIng.AgregarAlumno(alumno4);
             }
             catch (CupoLlenoException ex)
             {
@@ -83,25 +96,25 @@ namespace InstitutoAprender
             }
             finally
             {
-
+                Console.WriteLine($"Alumno cargado correctamente.");
             }
 
             // Mostrar datos
             Console.WriteLine("\n=== Alumnos inscriptos ===");
-            curso1.MostrarDatos();
-            curso1.MostrarInscriptos();
+            progObjetos.MostrarDatos();
+            progObjetos.MostrarInscriptos();
 
-            curso2.MostrarDatos();
-            curso2.MostrarInscriptos();
+            mat.MostrarDatos();
+            mat.MostrarInscriptos();
 
-            curso3.MostrarDatos();
-            curso3.MostrarInscriptos();
+            alg.MostrarDatos();
+            alg.MostrarInscriptos();
 
-            curso4.MostrarDatos();
-            curso4.MostrarInscriptos();
+            tallerIng.MostrarDatos();
+            tallerIng.MostrarInscriptos();
 
             // Mostrar promedio
-            Console.WriteLine($"\nPromedio del curso {curso1.Nombre}: {curso1.Promedio():F2}");
+            Console.WriteLine($"\nPromedio del curso {progObjetos.Nombre}: {progObjetos.Promedio():F2}");
         }
     }
 }

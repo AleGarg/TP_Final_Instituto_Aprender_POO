@@ -27,14 +27,28 @@ namespace InstitutoAprender
         // 1. Si el alumno no está registrado en el instituto, se debe dar de alta:
         public void InscribirAlumno(Alumno alumno)
         {
+            // VER QUE NO SE REPITA EL LEGAJO
             ListaAlumnos.Add(alumno);
         }
         public void EliminarAlumno(Alumno alumno)
         {
+            // SI BORRAMOS DEL INSTITUTO, BORRAMOS DE LOS CURSOS
+            // SI NO ESTÁ EN NINGÚN CURSO, BORRAMOS DEL INSTITUTO
+
             // ListaAlumnos.Remove(alumno);
             if (!ListaAlumnos.Remove(alumno))
             {
                 throw new Exception("Alumno no encontrado");
+            }
+            foreach (Curso curso in ListaCursos)
+            {
+                foreach(Alumno alumnoBorrar in curso.Inscriptos)
+                {
+                    if (alumno.Legajo == alumnoBorrar.Legajo)
+                    {
+                        curso.EliminarAlumno(alumno);
+                    }
+                }
             }
         }
 

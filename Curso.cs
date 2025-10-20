@@ -69,6 +69,24 @@ namespace InstitutoAprender
                 alumnoInscripto.MostrarDatos();
             }
         }
+
+        // TRANSFERIR UN ALUMNO DE UN CURSO A OTRO
+        public void transferirAlumnos(Curso cursoATransferir, Alumno alumnoATransferir)
+        {
+            try
+            {
+                cursoATransferir.AgregarAlumno(alumnoATransferir);
+            }
+            catch (CupoLlenoException ex)
+            {
+                Console.WriteLine($"⚠️ Error: {ex.Message}");
+                Console.WriteLine("El alumno no fue transferido ni eliminado de ningun curso.");
+            }
+            finally
+            {
+                Console.WriteLine($"Alumno transferido correctamente de {Nombre} a {cursoATransferir.Nombre}.");
+            }
+        }
     }
 
     public class CupoLlenoException : Exception

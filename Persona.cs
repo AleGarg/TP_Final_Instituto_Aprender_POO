@@ -2,18 +2,57 @@ using System;
 
 namespace InstitutoAprender
 {
-    public class Persona{
+    public abstract class Persona{
+        protected int dni;
+        protected string nombre;
+        protected string apellido;
+
+        public string Nombre
+        {
+            get
+            {
+                return nombre;
+            }
+            set
+            {
+                nombre = value;
+            }
+        }
+        public string Apellido
+        {
+            get
+            {
+                return apellido;
+            }
+            set
+            {
+                apellido = value;
+            }
+        }
+        public int Dni
+        {
+            get
+            {
+                return dni;
+            }
+            set
+            {
+                dni = value;
+            }
+        }
 
         // Public para que todos puedan leerlo, pero protected set para que solo las clases derivadas los puedan modificar
-        public string Nombre { get; protected set; }
-        public string Apellido { get; protected set; }
-        public int Dni { get; protected set; }
+        // protected string Nombre { get => nombre; set => nombre = value; }
+        // protected string Apellido { get; set; }
+        // protected int Dni { get => dni; set => dni = value; }
 
         public Persona(string nombre, string apellido, int dni)
         {
-            this.Nombre = nombre;
-            this.Apellido = apellido;
-            this.Dni = dni;
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.dni = dni;
         }
+
+        public abstract void MostrarDatos();
     }
 }

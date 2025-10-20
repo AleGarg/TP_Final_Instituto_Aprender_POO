@@ -3,15 +3,26 @@ using System;
 namespace InstitutoAprender
 {
     public class Docente : Persona{
-        public double Sueldo { get; set; }
+        private double sueldo;
+        public double Sueldo
+        {
+            get
+            {
+                return sueldo;
+            }
+            set
+            {
+                sueldo = value;
+            }
+        }
 
         public Docente(string nombre, string apellido, int dni, double sueldo) : base(nombre, apellido, dni)
         {
             Sueldo = sueldo;
         }
-        public void MostrarDatos()
+        public override void MostrarDatos()
 		{
-			Console.WriteLine($"Docente: {Nombre} {Apellido} | DNI: {Dni} | Sueldo: {Sueldo}");
+			Console.WriteLine($"Docente: {Nombre} {Apellido} | DNI: {Dni} | Sueldo: ${Sueldo}");
 		}
     }
 }
