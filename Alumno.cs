@@ -26,8 +26,8 @@ namespace InstitutoAprender
 		// Construimos los parametros 
 		public Alumno(string nombre, string apellido, int dni, int legajo, double nota) : base(nombre, apellido, dni)
 		{
-			this.Legajo = legajo;
-			this.Nota = nota;
+			Legajo = legajo;
+			Nota = nota;
 		}
 		
 		// Métodos públicos para leer los datos con get 
@@ -48,9 +48,9 @@ namespace InstitutoAprender
 		// 	return nota;
 		// }
 		
-		public void mostrardatos()
+		public void MostrarDatos()
 		{
-			Console.WriteLine("Alumno: " + Nombre + " " + Apellido + "| Legajo: " + Legajo + " | Nota: " + Nota);
+			Console.WriteLine($"Alumno: {Nombre} {Apellido} | Legajo: {Legajo} | Nota: {Nota}");
 		}
 	}
 }
