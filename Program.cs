@@ -29,7 +29,7 @@ namespace InstitutoAprender
 		Docente Docente3 = new Docente("Ana , Montana" , 77223311 , 550000 , "Algebra");
 		Docente3.MostrarDatos();
 		Docente Docente4 = new Docente("Sebastian , Perdicaro" , 66995511 , 690000 , "Taller de Ingenieria");
-		Docente4.MostrarDatos()
+		Docente4.MostrarDatos();
 		//crear alumnos 
         docente1.MostrarDatos();
         alumno alumno1 = new alumno("Pignata, Agustin" , 2520620,1001,9);
@@ -77,7 +77,7 @@ namespace InstitutoAprender
         curso1.MostrarInscriptos();
         curso2.Mostrarinscriptos();
         curso3.Mostarinscriptos();
-        curso4.Mostrarinscriptos()
+        curso4.Mostrarinscriptos();
 
         // Mostrar promedio
         Console.WriteLine($"\nPromedio del curso {curso1}: {curso1.Promedio():F2}");
