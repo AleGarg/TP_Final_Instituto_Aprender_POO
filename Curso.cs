@@ -1,55 +1,54 @@
 using System;
 namespace InstitutoAprender;
 
-    public class Clase
+public class Curso
 {
-      private string Nombrecurso;
-      private Docente docente;
-      private int cupomaximo;
-      private List<Alumno> inscriptos;
+    private string Nombre;
+    private Docente Docente;
+    private int CupoMaximo;
+    private List<Alumno> Inscriptos;
 
-    public Clase(string nombrecurso, Docente docente, int cupomaximo)
+    public Curso(string nombrecurso, Docente docente, int cupomaximo)
     {
-        this.Nombrecurso = nombrecurso;
-        this.docente = docente;
-        this.cupomaximo = cupomaximo;
-        this.inscriptos = new List<Alumno>();
+        this.Nombre = nombrecurso;
+        this.Docente = docente;
+        this.CupoMaximo = cupomaximo;
+        this.Inscriptos = new List<Alumno>();
     }
 
     public void AgregarAlumno(Alumno alumno)
     {
-        if (inscriptos.Count >= cupomaximo)
+        if (Inscriptos.Count >= CupoMaximo)
             throw new Exception("Curso lleno");
-        inscriptos.Add(alumno);
+        Inscriptos.Add(alumno);
 
     }
     public void EliminarAlumno(Alumno alumno)
     {
-        if (!inscriptos.Remove(alumno))
-        throw new Exception("Alumno no encontrado");
+        if (!Inscriptos.Remove(alumno))
+            throw new Exception("Alumno no encontrado");
     }
 
     public double RegistrarNotas()
-     {
+    {
         double sumaNotas = 0;
-        foreach (var alumno in inscriptos)
-          {
+        foreach (Alumno alumno in Inscriptos)
+        {
             sumaNotas += alumno.Nota;
-          }
-            return sumaNotas;
+        }
+        return sumaNotas;
     }
 
-    public double promedio()
-     {
-        if (inscriptos.Count == 0)
+    public double Promedio()
+    {
+        if (Inscriptos.Count == 0)
             return 0;
-        return RegistrarNotas() / inscriptos.Count;
-     }
+        return RegistrarNotas() / Inscriptos.Count;
+    }
 
-    public int cantidadInscriptos()
-     {
-        return inscriptos.Count;
-     }
-
+    public int CantidadInscriptos()
+    {
+        return Inscriptos.Count;
+    }
 
 }

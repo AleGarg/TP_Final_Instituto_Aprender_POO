@@ -1,13 +1,15 @@
 using System;
 using InstitutoAprender;
 
-namespace ejemplo
+namespace InstitutoAprender
 {
 	public class Alumno : Persona
 	{
 		// Atributos privados
 		private int Legajo { get; }
-		private double Nota { get; }
+
+		// PREGUNTAR SI ESTO ESTÁ BIEN (sino no me deja acceder a Nota desde Curso)
+		public double Nota { get; private set; }
 
 		// Constructor vacío la clase alumno
 
