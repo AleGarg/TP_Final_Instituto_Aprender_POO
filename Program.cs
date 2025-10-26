@@ -8,8 +8,6 @@ namespace InstitutoAprender
     {
         static void Main(string[] args)
         {
-            // PREGUNTAR SI ES NECESARIO USAR EL DNI Y QUE SALGA CUANDO PONEMOS LOS DATOS (por curiosidad)
-
             Console.WriteLine("======== Comienzo ========");
 
             Docente bestiaDeCalchin = new Docente("Julian", "Álvarez", 42260908, 9000.35);
@@ -45,6 +43,10 @@ namespace InstitutoAprender
             alumno3.MostrarDatos();
             Alumno alumno4 = new Alumno("Pepito", "Grillo", 48234652, 1004, 8);
             alumno4.MostrarDatos();
+            Alumno alumno5 = new Alumno("David", "Quint", 48220123, 1005, 6);
+            alumno5.MostrarDatos();
+            Alumno alumno6 = new Alumno("Lautaro", "del Campo", 43453942, 1006, 10);
+            alumno6.MostrarDatos();
 
             // Inscribir alumnos 
             AprenderMas.InscribirAlumno(alumno1);
@@ -52,22 +54,35 @@ namespace InstitutoAprender
             AprenderMas.InscribirAlumno(alumno3);
             AprenderMas.InscribirAlumno(alumno4);
 
-            List<Alumno> alumnosProgramacion = new List<Alumno>() { alumno1, alumno2, alumno3, alumno4 };
+            // LISTAS DE ALUMNOS (?
+            List<Alumno> alumnosProgramacion = new List<Alumno>() { alumno1, alumno2, alumno4 };
+            List<Alumno> alumnosMat = new List<Alumno>() { alumno2, alumno3 };
+            List<Alumno> alumnosAlg = new List<Alumno>() { alumno1, alumno3, alumno4 };
+            List<Alumno> alumnosTallerIng = new List<Alumno>() { alumno2, alumno3, alumno4 };
             
             // List<Alumno> alumnosProgramacion = new List<Alumno>();
 
             // Crear cursos
             Curso progObjetos = new Curso("Programación con objetos", Docente1, 5, alumnosProgramacion);
-            Curso mat = new Curso("Matemática", Docente2, 20, alumnosProgramacion);
-            Curso alg = new Curso("Algebra", Docente3, 20, alumnosProgramacion);
-            Curso tallerIng = new Curso("Taller de Ingenieria", Docente4, 20, alumnosProgramacion);
+            Curso mat = new Curso("Matemática", Docente2, 20, alumnosMat);
+            Curso alg = new Curso("Algebra", Docente3, 20, alumnosAlg);
+            Curso tallerIng = new Curso("Taller de Ingenieria", Docente4, 20, alumnosTallerIng);
 
-            Console.WriteLine($"CANTIDAD DE ALUMNOS PROG OBJ {progObjetos.CantidadInscriptos}");
+            Console.WriteLine("CANTIDAD DE ALUMNOS PROG OBJ: " + progObjetos.CantidadInscriptos());
 
 
             // TRANSFERIR UN ALUMNO DE PROGRAMACION A MATEMATICA
             Console.WriteLine("\n\n\n");
-            // progObjetos.transferirAlumnos(mat, alumno1);
+            mat.MostrarDatos();
+            mat.MostrarInscriptos();
+            progObjetos.MostrarDatos();
+            progObjetos.MostrarInscriptos();
+            Console.WriteLine("PRUEBA TRANSFERIR ALUMNO");
+            progObjetos.transferirAlumnos(mat, alumno1);
+            mat.MostrarDatos();
+            mat.MostrarInscriptos();
+            progObjetos.MostrarDatos();
+            progObjetos.MostrarInscriptos();
             Console.WriteLine("\n\n\n");
 
             // Crear instituto
@@ -84,10 +99,10 @@ namespace InstitutoAprender
             Console.WriteLine($"Intentando añadir alumnos...");
             try
             {
-                progObjetos.AgregarAlumno(alumno1);
-                mat.AgregarAlumno(alumno2);
-                alg.AgregarAlumno(alumno3);
-                tallerIng.AgregarAlumno(alumno4);
+                progObjetos.AgregarAlumno(alumno5);
+                mat.AgregarAlumno(alumno5);
+                alg.AgregarAlumno(alumno6);
+                tallerIng.AgregarAlumno(alumno6);
             }
             catch (CupoLlenoException ex)
             {

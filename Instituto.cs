@@ -21,7 +21,14 @@ namespace InstitutoAprender
         }
         public static void GuardarJson(string rutaArchivo)
         {
-
+            using (StreamReader lector = new StreamReader("archivo.txt"))
+            {
+                string linea;
+                while ((linea = lector.ReadLine()) != null)
+                {
+                    Console.WriteLine(linea);
+                }
+            }
         }
 
         // 1. Si el alumno no está registrado en el instituto, se debe dar de alta:

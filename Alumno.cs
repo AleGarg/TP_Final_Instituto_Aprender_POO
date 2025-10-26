@@ -70,7 +70,7 @@ namespace InstitutoAprender
 		
 		public override void MostrarDatos()
 		{
-			Console.WriteLine($"Alumno: {Nombre} {Apellido} | Legajo: {Legajo} | Nota: {Nota}");
+			Console.WriteLine($"Alumno: {Nombre} {Apellido} | DNI: {Dni} | Legajo: {Legajo} | Nota: {Nota}");
 		}
 	}
 }
