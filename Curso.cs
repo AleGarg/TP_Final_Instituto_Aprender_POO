@@ -4,10 +4,55 @@ namespace InstitutoAprender
 {
     public class Curso
     {
-        public string Nombre { get; private set; }
-        public Docente Docente { get; private set; }
-        private int CupoMaximo { get; set; }
-        public List<Alumno> Inscriptos { get; set; }
+        private string nombre;
+        private Docente docente;
+        private int cupoMaximo;
+        private List<Alumno> inscriptos;
+
+        public string Nombre
+        {
+            get
+            {
+                return nombre;
+            }
+            set
+            {
+                nombre = value;
+            }
+        }
+        public Docente Docente
+        {
+            get
+            {
+                return docente;
+            }
+            set
+            {
+                docente = value;
+            }
+        }
+        public int CupoMaximo
+        {
+            get
+            {
+                return cupoMaximo;
+            }
+            set
+            {
+                cupoMaximo = value;
+            }
+        }
+        public List<Alumno> Inscriptos
+        {
+            get
+            {
+                return inscriptos;
+            }
+            set
+            {
+                inscriptos = value;
+            }
+        }
 
         public Curso(string nombre, Docente docente, int cupomaximo, List<Alumno> inscriptos)
         {

@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 
 namespace InstitutoAprender
 {
@@ -15,19 +16,47 @@ namespace InstitutoAprender
             ListaAlumnos = listaAlumnos;
         }
 
-        public static void cargarJson(string rutaArchivo)
+        public void cargarJson(string rutaArchivo)
         {
-            
-        }
-        public static void GuardarJson(string rutaArchivo)
-        {
-            using (StreamReader lector = new StreamReader("archivo.txt"))
+            using (StreamReader lector = new StreamReader(rutaArchivo))
             {
+                if (File.Exists("datos.txt"))
+                {
+                    Console.WriteLine("El archivo existe.");
+                }
                 string linea;
                 while ((linea = lector.ReadLine()) != null)
                 {
                     Console.WriteLine(linea);
                 }
+            }
+        }
+        public void GuardarJson(string rutaArchivo)
+        {
+            string rutaCompleta = Path.Combine(rutaArchivo, Nombre+".json");
+
+            // Opciones para que el JSON esté indentado
+            var options = new JsonSerializerOptions { WriteIndented = true };
+
+            try
+            {
+                // 3. Serializa 'this' (el objeto Instituto actual) a un string JSON
+                string jsonString = JsonSerializer.Serialize(this);
+
+                // 4. Escribe ese string al archivo. Esto crea el archivo o lo sobrescribe.
+                File.WriteAllText(rutaCompleta, jsonString);
+
+                Console.WriteLine("Datos guardados en " + rutaCompleta);
+                Console.WriteLine(jsonString);
+                using (StreamWriter escritor = new StreamWriter(rutaCompleta))
+                {
+                    escritor.WriteLine(jsonString);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Es buena idea manejar posibles errores al guardar
+                Console.WriteLine($"Error al guardar el archivo JSON: {ex.Message}");
             }
         }
 
@@ -49,7 +78,7 @@ namespace InstitutoAprender
             }
             foreach (Curso curso in ListaCursos)
             {
-                foreach(Alumno alumnoBorrar in curso.Inscriptos)
+                foreach (Alumno alumnoBorrar in curso.Inscriptos)
                 {
                     if (alumno.Legajo == alumnoBorrar.Legajo)
                     {

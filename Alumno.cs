@@ -50,24 +50,6 @@ namespace InstitutoAprender
 			Nota = nota;
 		}
 		
-		// Métodos públicos para leer los datos con get 
-		
-		// Alejo 17-10: Esto también se puede simplificar arriba (poniendo solo {get; set;} )
-		// public string Getnombre()
-		// {
-		// 	return nombre;
-		// }
-		
-		// public int Getlegajo()
-		// {
-		// 	return legajo;
-		// }
-		
-		// public double Getnota()
-		// {
-		// 	return nota;
-		// }
-		
 		public override void MostrarDatos()
 		{
 			Console.WriteLine("Alumno: " + Nombre + " " + Apellido + " | DNI: " + Dni + " | Legajo: " + Legajo + " | Nota: " + Nota);

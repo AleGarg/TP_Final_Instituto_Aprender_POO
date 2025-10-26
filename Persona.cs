@@ -3,9 +3,9 @@ using System;
 namespace InstitutoAprender
 {
     public abstract class Persona{
-        protected int dni;
         protected string nombre;
         protected string apellido;
+        protected int dni;
 
         public string Nombre
         {
@@ -40,11 +40,6 @@ namespace InstitutoAprender
                 dni = value;
             }
         }
-
-        // Public para que todos puedan leerlo, pero protected set para que solo las clases derivadas los puedan modificar
-        // protected string Nombre { get => nombre; set => nombre = value; }
-        // protected string Apellido { get; set; }
-        // protected int Dni { get => dni; set => dni = value; }
 
         public Persona(string nombre, string apellido, int dni)
         {
