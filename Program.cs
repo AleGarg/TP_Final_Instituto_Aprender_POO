@@ -94,9 +94,9 @@ namespace InstitutoAprender
             Console.WriteLine("\nMOSTRANDO INSCRIPTOS: \n");
             progObjetos.MostrarInscriptos();
 
-            Console.WriteLine($"CANTIDAD DE ALUMNOS PROG OBJ {progObjetos.CantidadInscriptos()}");
+            Console.WriteLine("CANTIDAD DE ALUMNOS PROG OBJ " + progObjetos.CantidadInscriptos());
             // Agregar alumnos al curso
-            Console.WriteLine($"Intentando añadir alumnos...");
+            Console.WriteLine("Intentando añadir alumnos...");
             try
             {
                 progObjetos.AgregarAlumno(alumno5);
@@ -106,12 +106,12 @@ namespace InstitutoAprender
             }
             catch (CupoLlenoException ex)
             {
-                Console.WriteLine($"⚠️ Error: {ex.Message}");
+                Console.WriteLine("⚠️ Error: " + ex.Message);
                 // throw new CupoLlenoException("⚠️ Error: Cupo Lleno");
             }
             finally
             {
-                Console.WriteLine($"Alumno cargado correctamente.");
+                Console.WriteLine("Alumno cargado correctamente.");
             }
 
             // Mostrar datos
@@ -129,7 +129,7 @@ namespace InstitutoAprender
             tallerIng.MostrarInscriptos();
 
             // Mostrar promedio
-            Console.WriteLine($"\nPromedio del curso {progObjetos.Nombre}: {progObjetos.Promedio():F2}");
+            Console.WriteLine("\nPromedio del curso " + progObjetos.Nombre + ": " + progObjetos.Promedio().ToString("F2"));
         }
     }
 }

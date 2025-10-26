@@ -81,7 +81,7 @@ namespace InstitutoAprender
         {
             foreach (Curso curso in ListaCursos)
             {
-                Console.WriteLine($"Alumnos del curso {curso.Nombre}:\n");
+                Console.WriteLine("Alumnos del curso " + curso.Nombre + ":\n");
                 foreach (Alumno alumnoInscripto in curso.Inscriptos)
                 {
                     alumnoInscripto.MostrarDatos();

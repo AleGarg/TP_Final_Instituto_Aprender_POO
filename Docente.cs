@@ -22,7 +22,7 @@ namespace InstitutoAprender
         }
         public override void MostrarDatos()
 		{
-			Console.WriteLine($"Docente: {Nombre} {Apellido} | DNI: {Dni} | Sueldo: ${Sueldo}");
+			Console.WriteLine("Docente: " + Nombre + " " + Apellido + " | DNI: " + Dni + " | Sueldo: $" + Sueldo);
 		}
     }
 }

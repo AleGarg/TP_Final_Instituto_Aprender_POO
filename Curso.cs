@@ -59,7 +59,7 @@ namespace InstitutoAprender
 
         public void MostrarDatos()
         {
-            Console.WriteLine($"\nCurso: {Nombre} | Docente: {Docente.Nombre} {Docente.Apellido} | Cupo Máximo: {CupoMaximo}");
+            Console.WriteLine("\nCurso: " + Nombre + " | Docente: " + Docente.Nombre + " " + Docente.Apellido + " | Cupo Máximo: " + CupoMaximo);
         }
 
         public void MostrarInscriptos()
@@ -75,16 +75,20 @@ namespace InstitutoAprender
         {
             try
             {
+                // Transferimos el Alumno deseado al curso deseado
                 cursoATransferir.AgregarAlumno(alumnoATransferir);
+
+                // Y eliminamos el Alumno del curso actual
+                EliminarAlumno(alumnoATransferir);
             }
             catch (CupoLlenoException ex)
             {
-                Console.WriteLine($"⚠️ Error: {ex.Message}");
+                Console.WriteLine("⚠️ Error: " + ex.Message);
                 Console.WriteLine("El alumno no fue transferido ni eliminado de ningun curso.");
             }
             finally
             {
-                Console.WriteLine($"Alumno transferido correctamente de {Nombre} a {cursoATransferir.Nombre}.");
+                Console.WriteLine("Alumno transferido correctamente de " + Nombre + " a " + cursoATransferir.Nombre + ".");
             }
         }
     }
