@@ -16,6 +16,102 @@ namespace InstitutoAprender
             // \n es el salto de línea (hace un enter)
             Console.WriteLine($"Nombre: {bestiaDeCalchin.Nombre} {bestiaDeCalchin.Apellido}\nDNI: {bestiaDeCalchin.Dni}\nSueldo: {bestiaDeCalchin.Sueldo}");
 
+            // EL MENU Y COMO QUEDARIA HASTA AHORA 
+        do
+			{
+				Console.Clear();
+				Console.WriteLine("TRABAJO FINAL - PROGRAMACIÓN CON OBJETOS");
+				Console.WriteLine("1. Cargar datos desde archivo JSON");
+				Console.WriteLine("2. Guardar datos en archivo JSON");
+				Console.WriteLine("3. Inscribir alumno");
+				Console.WriteLine("4. Eliminar alumno");
+				Console.WriteLine("5. Listar alumnos del instituto");
+				Console.WriteLine("6. Mostrar cursos");
+				Console.WriteLine("7. Agregar alumno a curso");
+				Console.WriteLine("8. Eliminar alumno de curso");
+				Console.WriteLine("9. Calcular promedio de curso");
+				Console.WriteLine("10. Registrar nota de alumno");
+				Console.WriteLine("11. Transferir alumno entre cursos");
+				Console.WriteLine("12. Mostrar cantidad de inscriptos");
+				Console.WriteLine("13. Mostrar docentes");
+				Console.WriteLine("14. Mostrar resumen general del instituto");
+				Console.WriteLine("15. Salir");
+				Console.Write("Seleccione una opción (1-15): ");
+				
+				int.TryParse(Console.ReadLine());
+				Console.WriteLine();
+
+				switch (opcion)
+				{
+					case 1:
+						Console.WriteLine("Cargando datos desde JSON...");
+						break;
+
+					case 2:
+						Console.WriteLine("Guardando datos en JSON...");
+						break;
+
+					case 3:
+						Console.WriteLine("Inscribir alumno...");
+						break;
+
+					case 4:
+						Console.WriteLine("Eliminar alumno...");
+						break;
+
+					case 5:
+						Console.WriteLine("Listado de alumnos...");
+						break;
+				
+					case 6:
+						Console.WriteLine("Mostrar cursos existentes...");
+						break;
+
+					case 8:
+						Console.WriteLine("Eliminar alumno de curso...");
+						break;
+
+					case 9:
+						Console.WriteLine("Calcular promedio del curso...");
+						break;
+
+					case 10:
+						Console.WriteLine("Registrar nota de alumno...");
+						break;
+
+					case 11:
+						Console.WriteLine("Transferir alumno entre cursos...");
+						break;
+
+					case 12:
+						Console.WriteLine("Mostrar cantidad de inscriptos por curso...");
+						break;
+
+					case 13:
+						Console.WriteLine("Mostrar docentes registrados...");
+						break;
+
+					case 14:
+						Console.WriteLine("Mostrar resumen del instituto...");
+						break;
+
+					case 15:
+						Console.WriteLine("Saliendo del sistema...");
+						break;
+
+					default:
+						Console.WriteLine(" Opción inválida. Intente nuevamente.");
+						break;
+				}
+
+				if (opcion != 15)
+				{
+					Console.WriteLine("\nPresione una tecla para continuar...");
+					Console.ReadKey();
+				}
+
+			} while (opcion != 15);
+            
             // CREAR INSTITUTO
             // Al parecer se puede hacer un constructor sobrecargado, ver luego
             Instituto AprenderMas = new Instituto("Aprender+", new List<Curso>(), new List<Alumno>());
