@@ -16,7 +16,8 @@ namespace InstitutoAprender
             // \n es el salto de línea (hace un enter)
             Console.WriteLine($"Nombre: {bestiaDeCalchin.Nombre} {bestiaDeCalchin.Apellido}\nDNI: {bestiaDeCalchin.Dni}\nSueldo: {bestiaDeCalchin.Sueldo}");
 
-            // EL MENU Y COMO QUEDARIA HASTA AHORA 
+            // EL MENU Y COMO QUEDARIA HASTA AHORA
+			int opcion = 0;
         do
 			{
 				Console.Clear();
@@ -38,8 +39,8 @@ namespace InstitutoAprender
 				Console.WriteLine("15. Salir");
 				Console.Write("Seleccione una opción (1-15): ");
 				
-				int.TryParse(Console.ReadLine());
-				Console.WriteLine();
+				opcion=Convert.toint32(Console.Readline());
+			    Console.Writeline();
 
 				switch (opcion)
 				{
