@@ -39,7 +39,7 @@ namespace InstitutoAprender
 				Console.WriteLine("15. Salir");
 				Console.Write("Seleccione una opción (1-15): ");
 				
-				opcion=Convert.toint32(Console.Readline());
+				opcion = Convert.toint32(Console.Readline());
 			    Console.Writeline();
 
 				switch (opcion)
