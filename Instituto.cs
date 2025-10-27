@@ -1,13 +1,15 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text.Json;
 
 namespace InstitutoAprender
 {
     public class Instituto
     {
-        private string Nombre { get; set; }
-        private List<Curso> ListaCursos { get; set; }
-        private List<Alumno> ListaAlumnos { get; set; }
+        public string Nombre { get; set; }
+        public List<Curso> ListaCursos { get; set; }
+        public List<Alumno> ListaAlumnos { get; set; }
 
         public Instituto(string nombre, List<Curso> listaCursos, List<Alumno> listaAlumnos)
         {
@@ -18,103 +20,135 @@ namespace InstitutoAprender
 
         public void cargarJson(string rutaArchivo)
         {
+            if (!File.Exists(rutaArchivo))
+            {
+                Console.WriteLine("El archivo no existe.");
+                return;
+            }
+
             using (StreamReader lector = new StreamReader(rutaArchivo))
             {
-                if (File.Exists("datos.txt"))
-                {
-                    Console.WriteLine("El archivo existe.");
-                }
-                string linea;
-                while ((linea = lector.ReadLine()) != null)
-                {
-                    Console.WriteLine(linea);
-                }
+                string contenido = lector.ReadToEnd();
+                Console.WriteLine("Contenido del archivo JSON:");
+                Console.WriteLine(contenido);
             }
         }
+
+        // Guardar JSON
         public void GuardarJson(string rutaArchivo)
         {
-            string rutaCompleta = Path.Combine(rutaArchivo, Nombre+".json");
+            string rutaCompleta = Path.Combine(rutaArchivo, Nombre + ".json");
 
-            // Opciones para que el JSON esté indentado
             var options = new JsonSerializerOptions { WriteIndented = true };
 
             try
             {
-                // 3. Serializa 'this' (el objeto Instituto actual) a un string JSON
-                string jsonString = JsonSerializer.Serialize(this);
-
-                // 4. Escribe ese string al archivo. Esto crea el archivo o lo sobrescribe.
+                string jsonString = JsonSerializer.Serialize(this, options);
                 File.WriteAllText(rutaCompleta, jsonString);
 
                 Console.WriteLine("Datos guardados en " + rutaCompleta);
-                Console.WriteLine(jsonString);
-                using (StreamWriter escritor = new StreamWriter(rutaCompleta))
-                {
-                    escritor.WriteLine(jsonString);
-                }
             }
             catch (Exception ex)
             {
-                // Es buena idea manejar posibles errores al guardar
                 Console.WriteLine($"Error al guardar el archivo JSON: {ex.Message}");
             }
         }
 
-        // 1. Si el alumno no está registrado en el instituto, se debe dar de alta:
+        // Inscribir alumno en el instituto
         public void InscribirAlumno(Alumno alumno)
         {
-            // VER QUE NO SE REPITA EL LEGAJO
             ListaAlumnos.Add(alumno);
         }
+
+        // Eliminar alumno del instituto
         public void EliminarAlumno(Alumno alumno)
         {
-            // SI BORRAMOS DEL INSTITUTO, BORRAMOS DE LOS CURSOS
-            // SI NO ESTÁ EN NINGÚN CURSO, BORRAMOS DEL INSTITUTO
-
-            // ListaAlumnos.Remove(alumno);
             if (!ListaAlumnos.Remove(alumno))
             {
-                throw new Exception("Alumno no encontrado");
+                throw new Exception("Alumno no encontrado en el instituto.");
             }
+
             foreach (Curso curso in ListaCursos)
             {
-                foreach (Alumno alumnoBorrar in curso.Inscriptos)
+                Alumno encontrado = curso.Inscriptos.Find(a => a.Legajo == alumno.Legajo);
+                if (encontrado != null)
                 {
-                    if (alumno.Legajo == alumnoBorrar.Legajo)
-                    {
-                        curso.EliminarAlumno(alumno);
-                    }
+                    curso.EliminarAlumno(encontrado);
                 }
             }
         }
 
-        // AGREGAR Y ELIMINAR CURSOS
+        // Agregar curso
         public void AgregarCurso(Curso curso)
         {
             ListaCursos.Add(curso);
         }
-        public void EliminarCurso(Curso curso)
+
+        // Buscar alumno por legajo
+        public Alumno BuscarAlumnoPorLegajo(int legajo)
         {
-            ListaCursos.Add(curso);
+            foreach (Alumno a in ListaAlumnos)
+            {
+                if (a.Legajo == legajo)
+                    return a;
+            }
+            return null;
         }
 
-        // LISTAR CURSOS / ALUMNOS
-        public void ListarCursos(Alumno alumno)
+        // Buscar curso por nombre
+        public Curso BuscarCursoPorNombre(string nombre)
         {
-            foreach (Curso curso in ListaCursos)
+            foreach (Curso c in ListaCursos)
             {
-                curso.MostrarDatos();
+                if (c.Nombre.Equals(nombre, StringComparison.OrdinalIgnoreCase))
+                    return c;
+            }
+            return null;
+        }
+
+        // Listar todos los alumnos
+        public void ListarTodosLosAlumnos()
+        {
+            foreach (Alumno a in ListaAlumnos)
+            {
+                a.MostrarDatos();
             }
         }
-        public void ListarAlumnoPorCursos(Alumno alumno)
+
+        // Listar todos los cursos
+        public void ListarCursos()
         {
-            foreach (Curso curso in ListaCursos)
+            foreach (Curso c in ListaCursos)
             {
-                Console.WriteLine("Alumnos del curso " + curso.Nombre + ":\n");
-                foreach (Alumno alumnoInscripto in curso.Inscriptos)
-                {
-                    alumnoInscripto.MostrarDatos();
-                }
+                c.MostrarDatos();
+            }
+        }
+
+        // Cantidad total de alumnos
+        public int CantidadTotalInscriptos()
+        {
+            return ListaAlumnos.Count;
+        }
+
+        // Mostrar docentes
+        public void MostrarDocentes()
+        {
+            foreach (Curso c in ListaCursos)
+            {
+                Console.WriteLine("Docente: " + c.Docente.Nombre + " " + c.Docente.Apellido);
+            }
+        }
+
+        // Mostrar resumen general del instituto
+        public void MostrarResumen()
+        {
+            Console.WriteLine("Instituto: " + Nombre);
+            Console.WriteLine("Cursos: " + ListaCursos.Count);
+            Console.WriteLine("Alumnos: " + ListaAlumnos.Count);
+            Console.WriteLine("\nPromedios por curso:");
+            foreach (Curso c in ListaCursos)
+            {
+                Console.WriteLine("- " + c.Nombre + ": " + c.Promedio());
             }
         }
     }

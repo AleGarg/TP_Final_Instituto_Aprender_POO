@@ -1,0 +1,181 @@
+{
+  "Nombre": "Aprender\u002B",
+  "ListaCursos": [
+    {
+      "Nombre": "Programaci\u00F3n con Objetos",
+      "Docente": {
+        "Sueldo": 500000,
+        "Nombre": "Diego",
+        "Apellido": "Luparello",
+        "Dni": 44226688
+      },
+      "CupoMaximo": 5,
+      "Inscriptos": [
+        {
+          "Legajo": 1001,
+          "Nota": 9,
+          "Nombre": "Pignata",
+          "Apellido": "Agustin",
+          "Dni": 2520620
+        },
+        {
+          "Legajo": 1002,
+          "Nota": 10,
+          "Nombre": "Alejo",
+          "Apellido": "Brandan",
+          "Dni": 42568921
+        },
+        {
+          "Legajo": 1004,
+          "Nota": 8,
+          "Nombre": "Pepito",
+          "Apellido": "Grillo",
+          "Dni": 48234652
+        }
+      ]
+    },
+    {
+      "Nombre": "Matem\u00E1tica",
+      "Docente": {
+        "Sueldo": 450000,
+        "Nombre": "Viviana",
+        "Apellido": "Canosa",
+        "Dni": 88559911
+      },
+      "CupoMaximo": 20,
+      "Inscriptos": [
+        {
+          "Legajo": 1002,
+          "Nota": 10,
+          "Nombre": "Alejo",
+          "Apellido": "Brandan",
+          "Dni": 42568921
+        },
+        {
+          "Legajo": 1003,
+          "Nota": 10,
+          "Nombre": "Fabrizio",
+          "Apellido": "Insarrualde",
+          "Dni": 4552364
+        }
+      ]
+    },
+    {
+      "Nombre": "\u00C1lgebra",
+      "Docente": {
+        "Sueldo": 550000,
+        "Nombre": "Ana",
+        "Apellido": "Montana",
+        "Dni": 77223311
+      },
+      "CupoMaximo": 20,
+      "Inscriptos": [
+        {
+          "Legajo": 1001,
+          "Nota": 9,
+          "Nombre": "Pignata",
+          "Apellido": "Agustin",
+          "Dni": 2520620
+        },
+        {
+          "Legajo": 1003,
+          "Nota": 10,
+          "Nombre": "Fabrizio",
+          "Apellido": "Insarrualde",
+          "Dni": 4552364
+        },
+        {
+          "Legajo": 1004,
+          "Nota": 8,
+          "Nombre": "Pepito",
+          "Apellido": "Grillo",
+          "Dni": 48234652
+        }
+      ]
+    },
+    {
+      "Nombre": "Taller de Ingenier\u00EDa",
+      "Docente": {
+        "Sueldo": 690000,
+        "Nombre": "Sebastian",
+        "Apellido": "Perdicaro",
+        "Dni": 66995511
+      },
+      "CupoMaximo": 20,
+      "Inscriptos": [
+        {
+          "Legajo": 1002,
+          "Nota": 10,
+          "Nombre": "Alejo",
+          "Apellido": "Brandan",
+          "Dni": 42568921
+        },
+        {
+          "Legajo": 1003,
+          "Nota": 10,
+          "Nombre": "Fabrizio",
+          "Apellido": "Insarrualde",
+          "Dni": 4552364
+        },
+        {
+          "Legajo": 1004,
+          "Nota": 8,
+          "Nombre": "Pepito",
+          "Apellido": "Grillo",
+          "Dni": 48234652
+        }
+      ]
+    }
+  ],
+  "ListaAlumnos": [
+    {
+      "Legajo": 1001,
+      "Nota": 9,
+      "Nombre": "Pignata",
+      "Apellido": "Agustin",
+      "Dni": 2520620
+    },
+    {
+      "Legajo": 1002,
+      "Nota": 10,
+      "Nombre": "Alejo",
+      "Apellido": "Brandan",
+      "Dni": 42568921
+    },
+    {
+      "Legajo": 1003,
+      "Nota": 10,
+      "Nombre": "Fabrizio",
+      "Apellido": "Insarrualde",
+      "Dni": 4552364
+    },
+    {
+      "Legajo": 1004,
+      "Nota": 8,
+      "Nombre": "Pepito",
+      "Apellido": "Grillo",
+      "Dni": 48234652
+    },
+    {
+      "Legajo": 1005,
+      "Nota": 6,
+      "Nombre": "David",
+      "Apellido": "Quint",
+      "Dni": 48220123
+    },
+    {
+      "Legajo": 1006,
+      "Nota": 10,
+      "Nombre": "Lautaro",
+      "Apellido": "del Campo",
+      "Dni": 43453942
+    },
+    {
+      "Legajo": 444,
+      "Nota": 3,
+      "Nombre": "pepe",
+      "Apellido": "ele",
+      "Dni": 222
+    }
+  ]
+}
