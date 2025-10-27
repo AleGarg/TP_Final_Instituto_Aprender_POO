@@ -72,6 +72,8 @@ namespace InstitutoAprender
             }
             Inscriptos.Add(alumno);
         }
+        
+        // 2. Eliminar alumno de un curso. 
         public void EliminarAlumno(Alumno alumno)
         {
             if (!Inscriptos.Remove(alumno))
@@ -80,6 +82,7 @@ namespace InstitutoAprender
             }
         }
 
+        // 3. Registrar nota de examen para un alumno en un curso
         public double RegistrarNotas()
         {
             double sumaNotas = 0;
@@ -90,6 +93,7 @@ namespace InstitutoAprender
             return sumaNotas;
         }
 
+        // 8. Mostrar el promedio general de notas de cada curso.
         public double Promedio()
         {
             if (Inscriptos.Count == 0)
@@ -102,11 +106,7 @@ namespace InstitutoAprender
             return Inscriptos.Count;
         }
 
-        public void MostrarDatos()
-        {
-            Console.WriteLine("\nCurso: " + Nombre + " | Docente: " + Docente.Nombre + " " + Docente.Apellido + " | Cupo Máximo: " + CupoMaximo);
-        }
-
+        // 4. Listar alumnos de un curso, mostrando su nombre, DNI y nota (si la tiene).
         public void MostrarInscriptos()
         {
             foreach (Alumno alumnoInscripto in Inscriptos)
@@ -115,7 +115,13 @@ namespace InstitutoAprender
             }
         }
 
-        // TRANSFERIR UN ALUMNO DE UN CURSO A OTRO
+        // 5. Listar cursos con su docente responsable y la cantidad de inscriptos.
+        public void MostrarDatos()
+        {
+            Console.WriteLine("\nCurso: " + Nombre + " | Docente: " + Docente.Nombre + " " + Docente.Apellido + " | Cupo Máximo: " + CupoMaximo);
+        }
+
+        // 7. Transferir un alumno de un curso a otro. Se debe validar la existencia del alumno en el curso origen y el cupo disponible en el curso destino.
         public void transferirAlumnos(Curso cursoATransferir, Alumno alumnoATransferir)
         {
             try

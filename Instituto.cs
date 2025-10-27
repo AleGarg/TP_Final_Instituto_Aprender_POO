@@ -7,9 +7,43 @@ namespace InstitutoAprender
 {
     public class Instituto
     {
-        public string Nombre { get; set; }
-        public List<Curso> ListaCursos { get; set; }
-        public List<Alumno> ListaAlumnos { get; set; }
+        private string nombre;
+        private List<Curso> listaCursos;
+        private List<Alumno> listaAlumnos;
+
+        public string Nombre
+        {
+            get
+            {
+                return nombre;
+            }
+            set
+            {
+                nombre = value;
+            }
+        }
+        public List<Curso> ListaCursos
+        {
+            get
+            {
+                return listaCursos;
+            }
+            set
+            {
+                listaCursos = value;
+            }
+        }
+        public List<Alumno> ListaAlumnos
+        {
+            get
+            {
+                return listaAlumnos;
+            }
+            set
+            {
+                listaAlumnos = value;
+            }
+        }
 
         public Instituto(string nombre, List<Curso> listaCursos, List<Alumno> listaAlumnos)
         {
@@ -18,19 +52,23 @@ namespace InstitutoAprender
             ListaAlumnos = listaAlumnos;
         }
 
-        public void cargarJson(string rutaArchivo)
+        // 9. Guardar y cargar los datos del instituto. Los datos pueden persistirse en archivos de texto o en formato JSON.
+        // Se usa Instituto? con el ? para que sea un tipo de referencia anulable, o sea que pueda devolver null si falla
+        public static Instituto? CargarJson(string rutaArchivo)
         {
-            if (!File.Exists(rutaArchivo))
+            try
             {
-                Console.WriteLine("El archivo no existe.");
-                return;
-            }
+                string jsonString = File.ReadAllText(rutaArchivo);
 
-            using (StreamReader lector = new StreamReader(rutaArchivo))
+                Instituto? institutoCargado = JsonSerializer.Deserialize<Instituto>(jsonString);
+
+                Console.WriteLine("Datos cargados desde " + rutaArchivo);
+                return institutoCargado;
+            }
+            catch (Exception ex)
             {
-                string contenido = lector.ReadToEnd();
-                Console.WriteLine("Contenido del archivo JSON:");
-                Console.WriteLine(contenido);
+                Console.WriteLine("Error al cargar el archivo: " + ex.Message);
+                return null;
             }
         }
 
@@ -43,14 +81,18 @@ namespace InstitutoAprender
 
             try
             {
+                // Serializa el objeto Instituto actual a un string JSON
                 string jsonString = JsonSerializer.Serialize(this, options);
+
+                // Crea el archivo o lo sobrescribe
                 File.WriteAllText(rutaCompleta, jsonString);
 
                 Console.WriteLine("Datos guardados en " + rutaCompleta);
+                Console.WriteLine(jsonString);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al guardar el archivo JSON: {ex.Message}");
+                Console.WriteLine("Error al guardar el archivo JSON: " + ex.Message);
             }
         }
 
@@ -60,7 +102,7 @@ namespace InstitutoAprender
             ListaAlumnos.Add(alumno);
         }
 
-        // Eliminar alumno del instituto
+        // 2. Eliminar alumno del instituto. Si el alumno no cursa en ningún otro curso, también se lo debe dar de baja del instituto.
         public void EliminarAlumno(Alumno alumno)
         {
             if (!ListaAlumnos.Remove(alumno))
@@ -128,6 +170,48 @@ namespace InstitutoAprender
         public int CantidadTotalInscriptos()
         {
             return ListaAlumnos.Count;
+        }
+
+        // 6. Listar alumnos inscriptos en más de un curso
+        public void ListarAlumnosMultiplesCursos()
+        {
+            Dictionary<Alumno, int> conteoInscripciones = new Dictionary<Alumno, int>();
+            foreach (Curso c in ListaCursos)
+            {
+                foreach (Alumno alumno in c.Inscriptos)
+                {   
+                    // Comprobar si Alumno ya existe
+                    if (conteoInscripciones.ContainsKey(alumno))
+                    {
+                        conteoInscripciones[alumno]++;
+                    }
+                    else
+                    {
+                        // Sino, lo agregamos con valor 1 (Está en un curso)
+                        conteoInscripciones.Add(alumno, 1);
+                    }
+                }
+            }
+
+            bool seEncontraronAlumnos = false;
+            
+            // Recorremos el diccionario (pares de Alumno-Conteo)
+            foreach (KeyValuePair<Alumno, int> par in conteoInscripciones)
+            {
+                // Si el contador es mayor a 1, es decir que está en más de un curso:
+                if (par.Value > 1)
+                {
+                    // par.Key es el Alumno, par.Value es el conteo
+                    par.Key.MostrarDatos();
+                    Console.WriteLine(" (Inscripto en " + par.Value+ " cursos)");
+                    seEncontraronAlumnos = true;
+                }
+            }
+
+            if (!seEncontraronAlumnos)
+            {
+                Console.WriteLine("No se encontraron alumnos inscriptos en múltiples cursos.");
+            }
         }
 
         // Mostrar docentes

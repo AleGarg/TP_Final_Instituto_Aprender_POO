@@ -7,6 +7,7 @@ namespace InstitutoAprender
 	{
 		// Atributos privados
 		private int legajo;
+		// No sé si nota iría bien, depende también de qué curso
 		private double nota;
 
 		public int Legajo
