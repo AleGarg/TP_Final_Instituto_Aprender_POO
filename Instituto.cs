@@ -138,11 +138,11 @@ namespace InstitutoAprender
         }
 
         // Buscar curso por nombre
-        public Curso BuscarCursoPorNombre(string nombre)
+        public Curso BuscarCursoPorIdentificador(int identificador)
         {
             foreach (Curso c in ListaCursos)
             {
-                if (c.Nombre.Equals(nombre, StringComparison.OrdinalIgnoreCase))
+                if (c.Identificador.Equals(identificador))
                     return c;
             }
             return null;

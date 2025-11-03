@@ -4,11 +4,23 @@ namespace InstitutoAprender
 {
     public class Curso
     {
+        private int identificador;
         private string nombre;
         private Docente docente;
         private int cupoMaximo;
         private List<Alumno> inscriptos;
 
+        public int Identificador
+        {
+            get
+            {
+                return identificador;
+            }
+            set
+            {
+                identificador = value;
+            }
+        }
         public string Nombre
         {
             get
@@ -54,8 +66,9 @@ namespace InstitutoAprender
             }
         }
 
-        public Curso(string nombre, Docente docente, int cupomaximo, List<Alumno> inscriptos)
+        public Curso(int identificador, string nombre, Docente docente, int cupomaximo, List<Alumno> inscriptos)
         {
+            Identificador = identificador;
             Nombre = nombre;
             Docente = docente;
             CupoMaximo = cupomaximo;
@@ -118,7 +131,7 @@ namespace InstitutoAprender
         // 5. Listar cursos con su docente responsable y la cantidad de inscriptos.
         public void MostrarDatos()
         {
-            Console.WriteLine("\nCurso: " + Nombre + " | Docente: " + Docente.Nombre + " " + Docente.Apellido + " | Cupo Máximo: " + CupoMaximo);
+            Console.WriteLine("\nCurso: " + Identificador + " - " + Nombre + " | Docente: " + Docente.Nombre + " " + Docente.Apellido + " | Cupo Máximo: " + CupoMaximo);
         }
 
         // 7. Transferir un alumno de un curso a otro. Se debe validar la existencia del alumno en el curso origen y el cupo disponible en el curso destino.
