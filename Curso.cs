@@ -83,6 +83,11 @@ namespace InstitutoAprender
             {
                 throw new CupoLlenoException("Curso lleno");
             }
+            // Si el alumno ya está en el curso, lanza una excepción.
+            if (Inscriptos.Contains(alumno))
+            {
+                throw new AlumnoEnCursoException("El alumno ya está en el curso.");
+            }
             Inscriptos.Add(alumno);
         }
         
@@ -131,7 +136,7 @@ namespace InstitutoAprender
         // 5. Listar cursos con su docente responsable y la cantidad de inscriptos.
         public void MostrarDatos()
         {
-            Console.WriteLine("\nCurso: " + Identificador + " - " + Nombre + " | Docente: " + Docente.Nombre + " " + Docente.Apellido + " | Cupo Máximo: " + CupoMaximo);
+            Console.WriteLine("Curso: " + Identificador + " - " + Nombre + " | Docente: " + Docente.Nombre + " " + Docente.Apellido + " | Cupo Máximo: " + CupoMaximo);
         }
 
         // 7. Transferir un alumno de un curso a otro. Se debe validar la existencia del alumno en el curso origen y el cupo disponible en el curso destino.
@@ -160,5 +165,9 @@ namespace InstitutoAprender
     public class CupoLlenoException : Exception
     {
         public CupoLlenoException(string mensaje) : base(mensaje) { }
+    }
+    public class AlumnoEnCursoException : Exception
+    {
+        public AlumnoEnCursoException(string mensaje) : base(mensaje) { }
     }
 }
