@@ -23,13 +23,13 @@ namespace InstitutoAprender
 
                     if (precargar.ToUpper() != "SI" && precargar.ToUpper() != "NO")
                     {
-                        throw new Exception();
+                        throw new Exception("Ingrese SI o NO.");
                     }
                     break;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    Console.WriteLine("Error: Ingrese SI o NO.");
+                    Console.WriteLine("Error: " + ex.Message);
                     continue; // Vuelve al inicio del while
                 }
             }
@@ -200,22 +200,22 @@ namespace InstitutoAprender
                                 {
                                     if (a.Dni == dniA)
                                     {
-                                        throw new DuplicateNameException();
+                                        throw new DuplicateNameException("Ya existe un alumno con ese DNI.");
                                     }
                                 }
 
                                 break;
                             }
-                            catch (FormatException)
+                            catch (FormatException ex)
                             {
-                                Console.WriteLine("\nError: Solo se pueden ingresar números.");
+                                Console.WriteLine("\nError: Solo se pueden ingresar números." + ex.Message);
                                 Console.WriteLine("Presione una tecla para continuar...\n");
                                 Console.ReadKey(true);
                                 continue; // Vuelve al inicio del while
                             }
-                            catch (DuplicateNameException)
+                            catch (DuplicateNameException ex)
                             {
-                                Console.WriteLine("\nError: Ya existe un alumno con ese DNI.");
+                                Console.WriteLine("\nError: " + ex.Message);
                                 Console.WriteLine("Presione una tecla para continuar...\n");
                                 Console.ReadKey(true);
                                 continue; // Vuelve al inicio del while
@@ -234,7 +234,7 @@ namespace InstitutoAprender
                                 {
                                     if (a.Legajo == legajoA)
                                     {
-                                        throw new DuplicateNameException();
+                                        throw new DuplicateNameException("Ya existe un alumno con ese legajo.");
                                     }
                                 }
 
@@ -247,9 +247,9 @@ namespace InstitutoAprender
                                 Console.ReadKey(true);
                                 continue; // Vuelve al inicio del while
                             }
-                            catch (DuplicateNameException)
+                            catch (DuplicateNameException ex)
                             {
-                                Console.WriteLine("\nError: Ya existe un alumno con ese legajo.");
+                                Console.WriteLine("\nError: " + ex.Message);
                                 Console.WriteLine("Presione una tecla para continuar...\n");
                                 Console.ReadKey(true);
                                 continue; // Vuelve al inicio del while
@@ -311,7 +311,7 @@ namespace InstitutoAprender
                                             // Si el usuario escribe algo distinto a SI o NO hay excepción y lo pide de vuelta
                                             if (anadirOtro.ToUpper() != "SI" && anadirOtro.ToUpper() != "NO")
                                             {
-                                                throw new Exception();
+                                                throw new Exception("Ingrese SI o NO.");
                                             }
 
                                             // Si escribió SI:
@@ -344,8 +344,23 @@ namespace InstitutoAprender
                                     break;
                                 }
 
-                                Console.Write("\nIdentificador del curso: ");
-                                int identificadorCursoAnadir = Convert.ToInt32(Console.ReadLine());
+                                int identificadorCursoAnadir;
+                                while (true)
+                                {
+                                    try
+                                    {
+                                        Console.Write("\nIdentificador del curso: ");
+                                        identificadorCursoAnadir = Convert.ToInt32(Console.ReadLine());
+                                        break;
+                                    }
+                                    catch (FormatException)
+                                    {
+                                        Console.WriteLine("\nError: Solo se pueden ingresar números.");
+                                        Console.WriteLine("Presione una tecla para continuar...\n");
+                                        Console.ReadKey(true);
+                                        continue; // Vuelve al inicio del while
+                                    }
+                                }
 
                                 Curso cursoAnadir = AprenderMas.BuscarCursoPorIdentificador(identificadorCursoAnadir);
 
@@ -374,9 +389,9 @@ namespace InstitutoAprender
                                     Console.WriteLine("\nAlumno o curso no encontrado.");
                                 }
                             }
-                            catch (Exception)
+                            catch (Exception ex)
                             {
-                                Console.WriteLine("Error: Ingrese SI o NO.");
+                                Console.WriteLine("Error: " + ex.Message);
                                 continue; // Vuelve al inicio del while
                             }
 
@@ -387,10 +402,120 @@ namespace InstitutoAprender
 
                     case 2: // ELIMINAR ALUMNO DE UN CURSO
                         Console.WriteLine("=== Eliminar alumno de curso ===");
-                        Console.Write("Legajo del alumno: ");
-                        int legajoEliminarC = Convert.ToInt32(Console.ReadLine());
-                        Console.Write("Nombre del curso: ");
-                        int identificadorCursoE = Convert.ToInt32(Console.ReadLine());
+
+                        int legajoEliminarC;
+                        while (true)
+                        {
+                            try
+                            {
+                                Console.Write("Legajo del alumno: ");
+                                legajoEliminarC = Convert.ToInt32(Console.ReadLine());
+
+                                // VERIFICAR SI EL LEGAJO YA EXISTE
+                                bool existe = false;
+                                foreach (Alumno a in AprenderMas.ListaAlumnos)
+                                {
+                                    if (a.Legajo == legajoEliminarC)
+                                    {
+                                        existe = true;
+                                    }
+                                }
+                                if (existe == false)
+                                {
+                                    throw new Exception("El alumno con legajo " + legajoEliminarC + " no se ha encontrado.");
+                                }
+
+                                break;
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("\nError: Solo se pueden ingresar números.");
+                                Console.WriteLine("Presione una tecla para continuar...\n");
+                                Console.ReadKey(true);
+                                continue; // Vuelve al inicio del while
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("Error: " + ex.Message);
+                                Console.WriteLine("Presione una tecla para continuar...\n");
+                                Console.ReadKey(true);
+                                continue; // Vuelve al inicio del while
+                            }
+                        }
+
+                        bool estaEnAlgunCurso = false;
+                        bool tituloImpreso = false;
+                        foreach (Curso c in AprenderMas.ListaCursos)
+                        {
+                            foreach (Alumno a in c.Inscriptos)
+                            {
+                                if (a.Legajo == legajoEliminarC)
+                                {
+                                    if (!tituloImpreso)
+                                    {
+                                        Console.WriteLine("\nEl alumno está en estos cursos:");
+                                        tituloImpreso = true;
+                                    }
+
+                                    estaEnAlgunCurso = true;
+                                    c.MostrarDatos();
+
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (estaEnAlgunCurso == false)
+                        {
+                            Console.WriteLine("El alumno no está en ningún curso.\n");
+                            break;
+                        }
+
+                        int identificadorCursoE;
+                        while (true)
+                        {
+                            try
+                            {
+                                Console.Write("\nIdentificador del curso: ");
+                                identificadorCursoE = Convert.ToInt32(Console.ReadLine());
+
+                                // VERIFICAR SI EL LEGAJO YA EXISTE
+                                bool estaEnCurso = false;
+                                foreach (Curso c in AprenderMas.ListaCursos)
+                                {
+                                    if (c.Identificador == identificadorCursoE)
+                                    {
+                                        foreach (Alumno a in c.Inscriptos)
+                                        {
+                                            if (a.Legajo == legajoEliminarC)
+                                            {
+                                                estaEnCurso = true;
+                                            }
+                                        }
+                                    }
+                                }
+                                if (estaEnCurso == false)
+                                {
+                                    throw new Exception("El alumno no está en ese curso o el curso no existe.");
+                                }
+
+                                break;
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("\nError: Solo se pueden ingresar números.");
+                                Console.WriteLine("Presione una tecla para continuar...\n");
+                                Console.ReadKey(true);
+                                continue; // Vuelve al inicio del while
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("Error: " + ex.Message);
+                                Console.WriteLine("Presione una tecla para continuar...\n");
+                                Console.ReadKey(true);
+                                continue; // Vuelve al inicio del while
+                            }
+                        }
 
                         Alumno alumnoEliminarC = AprenderMas.BuscarAlumnoPorLegajo(legajoEliminarC);
                         Curso cursoE = AprenderMas.BuscarCursoPorIdentificador(identificadorCursoE);
@@ -414,13 +539,86 @@ namespace InstitutoAprender
                         break;
 
                     case 3: // CAMBIAR NOTA DE ALUMNO (Registrar nota de examen para un alumno en un curso.)
-                        Console.Write("Legajo del alumno: ");
-                        int legajoNota = Convert.ToInt32(Console.ReadLine());
+
+                        // MOSTRAR TODOS LOS ALUMNOS
+                        AprenderMas.ListarTodosLosAlumnos();
+
+                        int legajoNota;
+                        while (true)
+                        {
+                            try
+                            {
+                                Console.Write("\nLegajo: ");
+                                legajoNota = Convert.ToInt32(Console.ReadLine());
+
+                                // VERIFICAR SI EL LEGAJO EXISTE
+                                bool existeLegajo = false;
+                                foreach (Alumno a in AprenderMas.ListaAlumnos)
+                                {
+                                    if (a.Legajo == legajoNota)
+                                    {
+                                        existeLegajo = true;
+                                    }
+                                }
+                                if (existeLegajo == false)
+                                {
+                                    throw new Exception("No se encontró ningún alumno con ese legajo.");
+                                }
+
+                                break;
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("\nError: Solo se pueden ingresar números.");
+                                Console.WriteLine("Presione una tecla para continuar...\n");
+                                Console.ReadKey(true);
+                                continue; // Vuelve al inicio del while
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("\nError: " + ex.Message);
+                                Console.WriteLine("Presione una tecla para continuar...\n");
+                                Console.ReadKey(true);
+                                continue; // Vuelve al inicio del while
+                            }
+                        }
+
+                        // Console.Write("Legajo del alumno: ");
+                        // int legajoNota = Convert.ToInt32(Console.ReadLine());
+
                         Alumno alumnoNota = AprenderMas.BuscarAlumnoPorLegajo(legajoNota);
                         if (alumnoNota != null)
                         {
-                            Console.Write("Ingrese nueva nota: ");
-                            double nuevaNota = Convert.ToDouble(Console.ReadLine());
+                            double nuevaNota = 1;
+                            while (true)
+                            {
+                                try
+                                {
+                                    Console.Write("Ingrese nueva nota: ");
+                                    nuevaNota = Convert.ToDouble(Console.ReadLine());
+
+                                    if (nuevaNota < 1 || nuevaNota > 10)
+                                    {
+                                        throw new ArgumentOutOfRangeException("El valor debe estar entre 1 y 10.");
+                                    }
+
+                                    break;
+                                }
+                                catch (FormatException)
+                                {
+                                    Console.WriteLine("\nError: Solo se pueden ingresar números.");
+                                    Console.WriteLine("Presione una tecla para continuar...\n");
+                                    Console.ReadKey(true);
+                                    continue; // Vuelve al inicio del while
+                                }
+                                catch (ArgumentOutOfRangeException ex)
+                                {
+                                    Console.WriteLine("\nError: " + ex.Message);
+                                    Console.WriteLine("Presione una tecla para continuar...");
+                                    Console.ReadKey();
+                                }
+                            }
+                            
                             alumnoNota.Nota = nuevaNota;
                             Console.WriteLine("Nota actualizada correctamente.");
                         }
@@ -431,12 +629,53 @@ namespace InstitutoAprender
                         break;
 
                     case 4: // LISTAR ALUMNOS DE UN CURSO
+                        Console.WriteLine("Cursos: ");
+                        foreach (Curso c in AprenderMas.ListaCursos)
+                        {
+                            c.MostrarDatos();
+                        }
 
-                        Console.WriteLine("Ingrese el identificador del curso para ver sus alumnos: ");
-                        int identificadorCurso = Convert.ToInt32(Console.ReadLine());
+                        int identificadorCurso;
+                        while (true)
+                        {
+                            try
+                            {
+                                Console.Write("\nIngrese el identificador del curso para ver sus alumnos: ");
+                                identificadorCurso = Convert.ToInt32(Console.ReadLine());
 
-                        Console.WriteLine("=== Alumnos del curso ===");
-                        // Curso curso = 
+                                // VERIFICAR SI EL CURSO EXISTE
+                                bool cursoExiste = false;
+                                foreach (Curso c in AprenderMas.ListaCursos)
+                                {
+                                    if (c.Identificador == identificadorCurso)
+                                    {
+                                        cursoExiste = true;
+                                    }
+                                }
+                                if (cursoExiste == false)
+                                {
+                                    throw new Exception("El curso no existe.");
+                                }
+
+                                break;
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("\nError: Solo se pueden ingresar números.");
+                                Console.WriteLine("Presione una tecla para continuar...\n");
+                                Console.ReadKey(true);
+                                continue; // Vuelve al inicio del while
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("Error: " + ex.Message);
+                                Console.WriteLine("Presione una tecla para continuar...\n");
+                                Console.ReadKey(true);
+                                continue; // Vuelve al inicio del while
+                            }
+                        }
+
+                        Console.WriteLine("\n=== Alumnos del curso ===");
                         Curso curso = AprenderMas.BuscarCursoPorIdentificador(identificadorCurso);
 
                         curso.MostrarInscriptos();
