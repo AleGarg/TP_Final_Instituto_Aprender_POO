@@ -46,6 +46,7 @@ namespace InstitutoAprender
                 Docente Docente3 = new Docente("Ana", "Montana", 77223311, 550000);
                 Docente Docente4 = new Docente("Sebastian", "Perdicaro", 66995511, 690000);
                 Docente Docente5 = new Docente("Julian", "Álvarez", 42260908, 9000.35);
+                Docente Docente6 = new Docente("frionel", "fressi", 38456912, 696969.99);
 
                 // Alumnos
                 Alumno alumno1 = new Alumno("Pignata", "Agustin", 2520620, 1001, 9);
@@ -54,6 +55,21 @@ namespace InstitutoAprender
                 Alumno alumno4 = new Alumno("Pepito", "Grillo", 48234652, 1004, 8);
                 Alumno alumno5 = new Alumno("David", "Quint", 48220123, 1005, 6);
                 Alumno alumno6 = new Alumno("Lautaro", "del Campo", 43453942, 1006, 10);
+                Alumno alumno7 = new Alumno("Sofia", "Marin", 40123456, 1007, 9);
+                Alumno alumno8 = new Alumno("Camila", "Lopez", 42345678, 1008, 7);
+                Alumno alumno9 = new Alumno("Martina", "Gomez", 43456789, 1009, 8);
+                Alumno alumno10 = new Alumno("Lucas", "Fernandez", 44567890, 1010, 9);
+                Alumno alumno20 = new Alumno("Mateo", "Sanchez", 45678901, 1011, 10);
+                Alumno alumno11 = new Alumno("Valentina", "Ramirez", 46789012, 1012, 7);
+                Alumno alumno12 = new Alumno("Diego", "Torres", 47890123, 1013, 8);
+                Alumno alumno13 = new Alumno("Santiago", "Flores", 48901234, 1014, 9);
+                Alumno alumno14 = new Alumno("Nicolas", "Rivera", 49012345, 1015, 6);
+                Alumno alumno15 = new Alumno("Joaquin", "Vega", 50123456, 1016, 10);
+                Alumno alumno16 = new Alumno("Emilia", "Cruz", 51234567, 1017, 9);
+                Alumno alumno17 = new Alumno("Isabella", "Morales", 52345678, 1018, 8);
+                Alumno alumno18 = new Alumno("Camilo", "Ortiz", 53456789, 1019, 7);
+                Alumno alumno19 = new Alumno("Adrian", "Gutierrez", 54567890, 1020, 10);
+                Alumno alumno21 = new Alumno("Javier", "Rojas", 55678901, 1021, 9);
 
                 // Inscribir alumnos al instituto
                 AprenderMas.InscribirAlumno(alumno1);
@@ -62,12 +78,29 @@ namespace InstitutoAprender
                 AprenderMas.InscribirAlumno(alumno4);
                 AprenderMas.InscribirAlumno(alumno5);
                 AprenderMas.InscribirAlumno(alumno6);
+                AprenderMas.InscribirAlumno(alumno7);
+                AprenderMas.InscribirAlumno(alumno8);
+                AprenderMas.InscribirAlumno(alumno9);
+                AprenderMas.InscribirAlumno(alumno10);
+                AprenderMas.InscribirAlumno(alumno11);
+                AprenderMas.InscribirAlumno(alumno12);
+                AprenderMas.InscribirAlumno(alumno13);
+                AprenderMas.InscribirAlumno(alumno14);
+                AprenderMas.InscribirAlumno(alumno15);
+                AprenderMas.InscribirAlumno(alumno16);
+                AprenderMas.InscribirAlumno(alumno17);
+                AprenderMas.InscribirAlumno(alumno18);
+                AprenderMas.InscribirAlumno(alumno19);
+                AprenderMas.InscribirAlumno(alumno20);
+                AprenderMas.InscribirAlumno(alumno21);
 
                 // Crear cursos y asignar alumnos/docentes
-                List<Alumno> alumnosProg = new List<Alumno>() { alumno1, alumno2, alumno4 };
-                List<Alumno> alumnosMat = new List<Alumno>() { alumno2, alumno3 };
-                List<Alumno> alumnosAlg = new List<Alumno>() { alumno1, alumno3, alumno4 };
-                List<Alumno> alumnosTaller = new List<Alumno>() { alumno2, alumno3, alumno4 };
+                List<Alumno> alumnosProg = new List<Alumno>() { alumno1, alumno2, alumno4, alumno7, alumno15, alumno21 };
+                List<Alumno> alumnosMat = new List<Alumno>() { alumno2, alumno3, alumno5, alumno14, alumno15, alumno17 };
+                List<Alumno> alumnosAlg = new List<Alumno>() { alumno1, alumno3, alumno4, alumno5,alumno16 };
+                List<Alumno> alumnosTaller = new List<Alumno>() { alumno2, alumno3, alumno4, alumno11, alumno16, alumno8 };
+                List<Alumno> alumnosFisica = new List<Alumno>() { alumno5, alumno6, alumno7,alumno18, alumno19, alumno20 };
+                List<Alumno> alumnosQuimica = new List<Alumno>() { alumno8, alumno9, alumno10, alumno11, alumno12, alumno13 };
 
                 Curso progObjetos = new Curso(AprenderMas.ListaCursos.Count(), "Programación con Objetos", Docente1, 5, alumnosProg);
                 AprenderMas.AgregarCurso(progObjetos);
@@ -82,6 +115,12 @@ namespace InstitutoAprender
 
                 Curso tallerIng = new Curso(AprenderMas.ListaCursos.Count(), "Taller de Ingeniería", Docente4, 20, alumnosTaller);
                 AprenderMas.AgregarCurso(tallerIng);
+
+                Curso fisica = new Curso(AprenderMas.ListaCursos.Count(), "Física", Docente5, 20, alumnosFisica);
+                AprenderMas.AgregarCurso(fisica);
+
+                Curso quimica = new Curso(AprenderMas.ListaCursos.Count(), "Química", Docente6, 20, alumnosQuimica);
+                AprenderMas.AgregarCurso(quimica);
 
                 // usar identificacor para cursos y mostrarlos
 
