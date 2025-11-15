@@ -189,7 +189,7 @@ namespace InstitutoAprender
                             // Revisamos si está vacío
                             if (string.IsNullOrEmpty(nombreA))
                             {
-                                Console.WriteLine("Error: El nombre no puede estar vacío. Presione una tecla para continuar.");
+                                Console.WriteLine("Error: El nombre no puede estar vacío. Presione una tecla para continuar.\n");
                                 Console.ReadKey(true);
                                 continue;
                             }
@@ -197,7 +197,7 @@ namespace InstitutoAprender
                             // Revisamos si tiene algún dígito o número
                             if (nombreA.Any(char.IsDigit))
                             {
-                                Console.WriteLine("Error: El nombre no puede contener números. Presione una tecla para continuar.");
+                                Console.WriteLine("Error: El nombre no puede contener números. Presione una tecla para continuar.\n");
                                 Console.ReadKey(true);
                                 continue;
                             }
@@ -212,7 +212,7 @@ namespace InstitutoAprender
                             // Revisamos si está vacío
                             if (string.IsNullOrEmpty(apellidoA))
                             {
-                                Console.WriteLine("Error: El apellido no puede estar vacío. Presione una tecla para continuar.");
+                                Console.WriteLine("Error: El apellido no puede estar vacío. Presione una tecla para continuar.\n");
                                 Console.ReadKey(true);
                                 continue;
                             }
@@ -220,7 +220,7 @@ namespace InstitutoAprender
                             // Revisamos si tiene algún dígito o número
                             if (apellidoA.Any(char.IsDigit))
                             {
-                                Console.WriteLine("Error: El apellido no puede contener números. Presione una tecla para continuar.");
+                                Console.WriteLine("Error: El apellido no puede contener números. Presione una tecla para continuar.\n");
                                 Console.ReadKey(true);
                                 continue;
                             }
@@ -245,9 +245,9 @@ namespace InstitutoAprender
 
                                 break;
                             }
-                            catch (FormatException ex)
+                            catch (FormatException)
                             {
-                                Console.WriteLine("\nError: Solo se pueden ingresar números." + ex.Message);
+                                Console.WriteLine("\nError: Solo se pueden ingresar números.");
                                 Console.WriteLine("Presione una tecla para continuar...\n");
                                 Console.ReadKey(true);
                                 continue; // Vuelve al inicio del while
