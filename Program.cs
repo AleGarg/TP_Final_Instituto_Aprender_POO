@@ -122,7 +122,7 @@ namespace InstitutoAprender
                 AprenderMas.AgregarCurso(quimica);
 
                 // Asignamos notas para cada alumno en cada curso
-                
+
                 // Curso: Programación con Objetos (ID = 0)
                 // Alumnos: { alumno1, alumno2, alumno4, alumno7, alumno15 }
                 alumno1.RegistrarNota(0, 9);
@@ -283,7 +283,7 @@ namespace InstitutoAprender
                         {
                             try
                             {
-                                Console.Write("DNIss: ");
+                                Console.Write("DNI: ");
                                 dniA = Convert.ToInt32(Console.ReadLine());
 
                                 // Verificamos si hay algún alumno con el mismo DNI
@@ -356,34 +356,35 @@ namespace InstitutoAprender
                         string anadirOpcion;
                         int iteracion = 0;
 
+                        // Intentamos añadir alumno a un curso por primera vez
                         while (true)
                         {
                             Console.WriteLine("\nITERACIÓN " + iteracion + "\n");
                             try
                             {
                                 if (iteracion == 0)
-                            {
-                                while (true)
                                 {
-                                    Console.Write("Ingrese SI o NO: ");
-                                    anadirOpcion = Console.ReadLine().Trim().ToUpper();
+                                    while (true)
+                                    {
+                                        Console.Write("Ingrese SI o NO: ");
+                                        anadirOpcion = Console.ReadLine().Trim().ToUpper();
 
-                                    if (anadirOpcion == "SI" || anadirOpcion == "NO")
-                                        break;
+                                        if (anadirOpcion == "SI" || anadirOpcion == "NO")
+                                            break;
 
-                                    Console.WriteLine("Error: Ingrese SI o NO.");
-                                }
+                                        Console.WriteLine("Error: Ingrese SI o NO.");
+                                    }
 
-                                if (anadirOpcion == "SI")
-                                {
-                                    Console.WriteLine("\nCursos disponibles:");
-                                    AprenderMas.ListarCursos();
+                                    if (anadirOpcion == "SI")
+                                    {
+                                        Console.WriteLine("\nCursos disponibles:");
+                                        AprenderMas.ListarCursos();
+                                    }
+                                    else
+                                    {
+                                        break; // NO: salís y no agregás cursos
+                                    }
                                 }
-                                else
-                                {
-                                    break;
-                                }
-                            }
 
                                 string anadirOtro;
                                 bool agregar = true;
@@ -454,6 +455,7 @@ namespace InstitutoAprender
 
                                 if (nuevo != null && cursoAnadir != null)
                                 {
+                                    // Intentamos añadir el nuevo alumno al curso indicado
                                     try
                                     {
                                         cursoAnadir.AgregarAlumno(nuevo);
@@ -461,11 +463,11 @@ namespace InstitutoAprender
 
                                         // ======== PEDIR NOTA =========
                                         string anadirNota;
-                                        bool agregarNota = true;
 
                                         Console.WriteLine("\n¿Desea añadir la nota del alumno para este curso? Escriba SI o NO.");
                                         while (true)
                                         {
+                                            // Intentamos pedir un "SI" o "NO"
                                             try
                                             {
                                                 anadirNota = Console.ReadLine();
@@ -479,35 +481,39 @@ namespace InstitutoAprender
                                                 // Si escribió SI:
                                                 if (anadirNota.ToUpper() == "SI")
                                                 {
-                                                    // Pedimos la nota con try-catch
-                                                    try
+                                                    while (true)
                                                     {
-                                                        Console.Write("Nota inicial: ");
-                                                        notaA = Convert.ToDouble(Console.ReadLine());
-
-                                                        if (notaA < 1 || notaA > 10)
+                                                        // Pedimos la nota con try-catch
+                                                        try
                                                         {
-                                                            throw new ArgumentOutOfRangeException("El valor debe estar entre 1 y 10.");
-                                                        }
+                                                            Console.Write("\nNota inicial: ");
+                                                            notaA = Convert.ToDouble(Console.ReadLine());
 
-                                                        nuevo.RegistrarNota(cursoAnadir.Identificador, notaA);
-                                                        Console.WriteLine("¡Nota registrada exitosamente!");
-                                                        break;
+                                                            if (notaA < 1 || notaA > 10)
+                                                            {
+                                                                throw new ArgumentOutOfRangeException("El valor debe estar entre 1 y 10.");
+                                                            }
+
+                                                            nuevo.RegistrarNota(cursoAnadir.Identificador, notaA);
+                                                            Console.WriteLine("¡Nota registrada exitosamente!");
+                                                            break;
+                                                        }
+                                                        catch (FormatException)
+                                                        {
+                                                            Console.WriteLine("Error: Solo se pueden ingresar números.");
+                                                            Console.WriteLine("\nPresione una tecla para continuar...");
+                                                            Console.ReadKey(true);
+                                                            continue; // Vuelve al inicio del while
+                                                        }
+                                                        catch (ArgumentOutOfRangeException)
+                                                        {
+                                                            Console.WriteLine("\nError: El valor debe estar entre 1 y 10.");
+                                                            Console.WriteLine("Presione una tecla para continuar...");
+                                                            Console.ReadKey(true);
+                                                            continue; // Vuelve al inicio del while
+                                                        }
                                                     }
-                                                    catch (FormatException)
-                                                    {
-                                                        Console.WriteLine("Error: Solo se pueden ingresar números.");
-                                                        Console.WriteLine("\nPresione una tecla para continuar...");
-                                                        Console.ReadKey(true);
-                                                        continue; // Vuelve al inicio del while
-                                                    }
-                                                    catch (ArgumentOutOfRangeException ex)
-                                                    {
-                                                        Console.WriteLine("\nError: " + ex.Message);
-                                                        Console.WriteLine("Presione una tecla para continuar...");
-                                                        Console.ReadKey(true);
-                                                        continue; // Vuelve al inicio del while
-                                                    }
+                                                    break;
                                                 }
                                                 // Si escribió NO:
                                                 if (anadirNota.ToUpper() == "NO")
@@ -523,32 +529,20 @@ namespace InstitutoAprender
                                             }
                                         }
                                     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                    // Error: el cupo está lleno
                                     catch (CupoLlenoException ex)
                                     {
                                         Console.WriteLine("\nError: " + ex.Message);
                                         Console.WriteLine("EL ALUMNO NO FUE AÑADIDO AL CURSO.");
-                                        break;
+                                        iteracion++;
+                                        continue;
                                     }
+                                    // Error: el alumno ya estaba en el curso
                                     catch (AlumnoEnCursoException ex)
                                     {
                                         Console.WriteLine("\nError: " + ex.Message);
                                         Console.WriteLine("EL ALUMNO NO FUE AÑADIDO AL CURSO.");
+                                        iteracion++;
                                         continue;
                                     }
                                 }
@@ -694,6 +688,27 @@ namespace InstitutoAprender
                             {
                                 cursoE.EliminarAlumno(alumnoEliminarC);
                                 Console.WriteLine("Alumno eliminado del curso.");
+
+                                estaEnAlgunCurso = false;
+                                foreach (Curso c in AprenderMas.ListaCursos)
+                                {
+                                    foreach (Alumno a in c.Inscriptos)
+                                    {
+                                        if (a.Legajo == legajoEliminarC)
+                                        {
+                                            estaEnAlgunCurso = true;
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                if (estaEnAlgunCurso == false)
+                                {
+                                    AprenderMas.EliminarAlumno(alumnoEliminarC);
+                                    Console.WriteLine("El alumno no está en ningún curso: El alumno fue eliminado del instituto.");
+
+                                    break;
+                                }
                             }
                             catch (Exception ex)
                             {
@@ -766,7 +781,7 @@ namespace InstitutoAprender
 
                                     if (nuevaNota < 1 || nuevaNota > 10)
                                     {
-                                        throw new ArgumentOutOfRangeException("El valor debe estar entre 1 y 10.");
+                                        throw new ArgumentOutOfRangeException();
                                     }
 
                                     break;
@@ -778,9 +793,9 @@ namespace InstitutoAprender
                                     Console.ReadKey(true);
                                     continue; // Vuelve al inicio del while
                                 }
-                                catch (ArgumentOutOfRangeException ex)
+                                catch (ArgumentOutOfRangeException)
                                 {
-                                    Console.WriteLine("\nError: " + ex.Message);
+                                    Console.WriteLine("\nError: El valor debe estar entre 1 y 10.");
                                     Console.WriteLine("Presione una tecla para continuar...");
                                     Console.ReadKey(true);
                                     continue; // Vuelve al inicio del while
@@ -788,7 +803,7 @@ namespace InstitutoAprender
                             }
 
                             alumnoNota.RegistrarNota(legajoNota, nuevaNota);
-                            Console.WriteLine(legajoNota + " " +nuevaNota); // NUEVA NOTA PRUEBA
+                            Console.WriteLine(legajoNota + " " + nuevaNota); // NUEVA NOTA PRUEBA
                             Console.WriteLine("Nota actualizada correctamente.");
                         }
                         else
@@ -826,6 +841,11 @@ namespace InstitutoAprender
                                     throw new Exception("El curso no existe.");
                                 }
 
+                                Console.WriteLine("\n=== Alumnos del curso ===");
+                                Curso curso = AprenderMas.BuscarCursoPorIdentificador(identificadorCurso);
+
+                                curso.MostrarInscriptos();
+
                                 break;
                             }
                             catch (FormatException)
@@ -838,16 +858,9 @@ namespace InstitutoAprender
                             catch (Exception ex)
                             {
                                 Console.WriteLine("Error: " + ex.Message);
-                                Console.WriteLine("Presione una tecla para continuar...\n");
-                                Console.ReadKey(true);
-                                continue; // Vuelve al inicio del while
+                                break; // Vuelve al inicio del while
                             }
                         }
-
-                        Console.WriteLine("\n=== Alumnos del curso ===");
-                        Curso curso = AprenderMas.BuscarCursoPorIdentificador(identificadorCurso);
-
-                        curso.MostrarInscriptos();
                         break;
 
                     case 5: // LISTAR CURSOS
@@ -919,7 +932,6 @@ namespace InstitutoAprender
                     // ============================== EXTRAS ==============================
 
                     case 11: // ELIMINAR ALUMNO DE INSTITUTO
-                        // VERIFICAR SI ESTE SE ELIMINA DE TODOS LOS CURSOS EN LOS QUE ESTABA
                         Console.Write("Ingrese el legajo del alumno a eliminar: ");
                         int legajoEliminar = Convert.ToInt32(Console.ReadLine());
                         Alumno alumnoEliminar = AprenderMas.BuscarAlumnoPorLegajo(legajoEliminar);
@@ -956,9 +968,13 @@ namespace InstitutoAprender
                                 cursoA.AgregarAlumno(alumnoAgregar);
                                 Console.WriteLine("Alumno agregado al curso correctamente.");
                             }
+                            catch (AlumnoEnCursoException ex)
+                            {
+                                Console.WriteLine("\nError: " + ex.Message);
+                            }
                             catch (CupoLlenoException ex)
                             {
-                                Console.WriteLine("Error: " + ex.Message);
+                                Console.WriteLine("\nError: " + ex.Message);
                             }
                         }
                         else
@@ -987,9 +1003,9 @@ namespace InstitutoAprender
                         break;
 
                     case 17: // TEST
-                        Curso progObjetos = AprenderMas.BuscarCursoPorIdentificador(0); 
+                        Curso progObjetos = AprenderMas.BuscarCursoPorIdentificador(0);
                         progObjetos.MostrarDatos();
-                        Console.WriteLine("inscriptos: "+progObjetos.CantidadInscriptos());
+                        Console.WriteLine("inscriptos: " + progObjetos.CantidadInscriptos());
                         break;
 
                     default:
