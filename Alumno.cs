@@ -9,6 +9,10 @@ namespace InstitutoAprender
 		private int legajo;
 		// No sé si nota iría bien, depende también de qué curso
 		private double nota;
+		// Diccionario = Valor notas 
+		private Dictionary<double> notasporcurso
+		
+		
 
 		public int Legajo
         {
@@ -31,6 +35,18 @@ namespace InstitutoAprender
 				nota = value;
             }
         }
+		Public double notasporcurso
+		{
+		    get
+			{ 
+			     return notasporcurso; 
+			}
+			set
+			{
+			   notasporcurso = value;
+			}
+		
+		}
 
 		// Constructor vacío la clase alumno
 
@@ -49,7 +65,9 @@ namespace InstitutoAprender
 		{
 			Legajo = legajo;
 			Nota = nota;
+			Notasporcurso = New Dictionary<double>();
 		}
+	
 		
 		public override void MostrarDatos()
 		{
