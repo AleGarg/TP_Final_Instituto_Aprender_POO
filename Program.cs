@@ -563,6 +563,13 @@ namespace InstitutoAprender
                         break;
 
                     case 2: // ELIMINAR ALUMNO DE UN CURSO
+
+                        if(AprenderMas.CantidadTotalInscriptos() == 0)
+                        {
+                            Console.WriteLine("No hay alumnos para eliminar.");
+                            break;
+                        }
+
                         Console.WriteLine("=== Eliminar alumno de curso ===");
 
                         int legajoEliminarC;
@@ -723,6 +730,12 @@ namespace InstitutoAprender
 
                     case 3: // CAMBIAR NOTA DE ALUMNO (Registrar nota de examen para un alumno en un curso.)
 
+                        if(AprenderMas.CantidadTotalInscriptos() == 0)
+                        {
+                            Console.WriteLine("No hay alumnos para cambiar su nota.");
+                            break;
+                        }
+
                         // Para poner nota de un alumno, necesitamos:
                         // Legajo del alumno - Identificador del curso - Nueva nota (double) - VERIFICAR SI EL ALUMNO ESTÁ EN ESE CURSO
 
@@ -840,6 +853,13 @@ namespace InstitutoAprender
                         break;
 
                     case 4: // LISTAR ALUMNOS DE UN CURSO
+
+                        if(AprenderMas.CantidadTotalInscriptos() == 0)
+                        {
+                            Console.WriteLine("No hay alumnos para listar.");
+                            break;
+                        }
+
                         Console.WriteLine("Cursos: ");
                         foreach (Curso c in AprenderMas.ListaCursos)
                         {
@@ -891,16 +911,36 @@ namespace InstitutoAprender
                         break;
 
                     case 5: // LISTAR CURSOS
+
+                        if(AprenderMas.ListaCursos.Count() == 0)
+                        {
+                            Console.WriteLine("No hay cursos ni docentes para mostrar.");
+                            break;
+                        }
+
                         Console.WriteLine("=== Lista de cursos ===");
                         AprenderMas.ListarCursos();
                         break;
 
                     case 6: // MOSTRAR ALUMNOS EN 1 CURSO O MÁS
+                        if(AprenderMas.CantidadTotalInscriptos() == 0)
+                        {
+                            Console.WriteLine("No hay alumnos para listar.");
+                            break;
+                        }
+
                         Console.WriteLine("Lista de alumnos que están en más de 1 curso: ");
                         AprenderMas.ListarAlumnosMultiplesCursos();
                         break;
 
                     case 7: // TRANSFERIR ALUMO DE UN CURSO A OTRO
+
+                        if(AprenderMas.CantidadTotalInscriptos() == 0)
+                        {
+                            Console.WriteLine("No hay alumnos para transferir.");
+                            break;
+                        }
+
                         Console.WriteLine("=== Transferir alumno entre cursos ===");
 
                         AprenderMas.ListarTodosLosAlumnos();
@@ -995,6 +1035,13 @@ namespace InstitutoAprender
 
 
                     case 8: // MOSTRAR PROMEDIO DEL CURSO
+
+                        if(AprenderMas.CantidadTotalInscriptos() == 0)
+                        {
+                            Console.WriteLine("No hay alumnos para promediar.");
+                            break;
+                        }
+
                         Console.Write("Ingrese el identificador del curso: ");
                         int identificadorCursoP = Convert.ToInt32(Console.ReadLine());
                         Curso cursoP = AprenderMas.BuscarCursoPorIdentificador(identificadorCursoP);
@@ -1023,6 +1070,13 @@ namespace InstitutoAprender
                     // ============================== EXTRAS ==============================
 
                     case 11: // ELIMINAR ALUMNO DE INSTITUTO
+
+                        if(AprenderMas.CantidadTotalInscriptos() == 0)
+                        {
+                            Console.WriteLine("No hay alumnos para eliminar.");
+                            break;
+                        }
+
                         Console.Write("Ingrese el legajo del alumno a eliminar: ");
 
                         int legajoEliminar;
@@ -1060,11 +1114,25 @@ namespace InstitutoAprender
                         break;
 
                     case 12: // LISTAR TODOS LOS ALUMNOS DEL INSTITUTO
+
+                        if(AprenderMas.CantidadTotalInscriptos() == 0)
+                        {
+                            Console.WriteLine("No hay alumnos para listar.");
+                            break;
+                        }
+
                         Console.WriteLine("=== Lista de alumnos del instituto ===");
                         AprenderMas.ListarTodosLosAlumnos();
                         break;
 
                     case 13: // AGREGAR ALUMNO EXISTENTE A UN CURSO
+
+                        if(AprenderMas.CantidadTotalInscriptos() == 0)
+                        {
+                            Console.WriteLine("No hay alumnos para agregar.");
+                            break;
+                        }
+
                         Console.WriteLine("=== Agregar alumno a curso ===");
 
                         int legajoAgregar;
@@ -1132,7 +1200,13 @@ namespace InstitutoAprender
                         Console.WriteLine("Cantidad total de alumnos inscriptos: " + AprenderMas.CantidadTotalInscriptos());
                         break;
 
-                    case 15: // MOSTRAR TODOS LOS DOCENTES DEL INSTITUTO 
+                    case 15: // MOSTRAR TODOS LOS DOCENTES DEL INSTITUTO
+                        if(AprenderMas.ListaCursos.Count() == 0)
+                        {
+                            Console.WriteLine("No hay cursos ni docentes para mostrar.");
+                            break;
+                        }
+
                         Console.WriteLine("=== Docentes del instituto ===");
                         AprenderMas.MostrarDocentes();
                         break;
@@ -1145,12 +1219,6 @@ namespace InstitutoAprender
                     case 0: // SALIR
                         Console.WriteLine("Saliendo del sistema...");
                         salir = true;
-                        break;
-
-                    case 17: // TEST
-                        Curso progObjetos = AprenderMas.BuscarCursoPorIdentificador(0);
-                        progObjetos.MostrarDatos();
-                        Console.WriteLine("inscriptos: " + progObjetos.CantidadInscriptos());
                         break;
 
                     default:
