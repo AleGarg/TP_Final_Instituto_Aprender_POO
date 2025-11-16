@@ -795,7 +795,7 @@ namespace InstitutoAprender
                                 // Verificamos si el alumno está inscrito en el curso. Si no lo está, tiramos error.
                                 if (!cursoNota.Inscriptos.Contains(alumnoNota))
                                 {
-                                    throw new Exception("El alumno " + alumnoNota.Nombre + " " + alumnoNota.Nombre + " no está inscripto en el curso " + cursoNota.Nombre + ".");
+                                    throw new Exception("El alumno " + alumnoNota.Nombre + " " + alumnoNota.Apellido + " no está inscripto en el curso " + cursoNota.Nombre + ".");
                                 }
 
                                 break;
