@@ -931,43 +931,44 @@ namespace InstitutoAprender
 
                     // ============================== EXTRAS ==============================
 
-                     case 11: // ELIMINAR ALUMNO DE INSTITUTO
-                      Console.Write("Ingrese el legajo del alumno a eliminar:");
+                    case 11: // ELIMINAR ALUMNO DE INSTITUTO
+                        Console.Write("Ingrese el legajo del alumno a eliminar: ");
 
-                      int legajoEliminar;
-                      while (true)
-                      {
-                          try
-                          {
-                              legajoEliminar = Convert.ToInt32(Console.ReadLine());
-                              break; // Es correcto si llega hasta aca 
-                          }
-                         catch 
-                         {
-                             Console.WriteLine("\nError: Solo se pueden ingresar números.");
-                             Console.Write("Ingrese nuevamente el legajo: ");
-                          } 
-                      }    
-                           try
-                           {
-                               Alumno alumnoEliminar = AprenderMas.BuscarAlumnoPorLegajo(legajoEliminar);
-                               if (alumnoEliminar != null)
-                               {
-                                   AprenderMas.EliminarAlumno(alumnoEliminar);
-                                   Console.WriteLine("Alumno eliminado correctamente.");
-                               }
-                               else 
-                               {
-                                  Console.WriteLine("Alumno no encontrado.");  
-                               }
-                           }
-                               catch (Exception ex)
-                               {
-                                   Console.WriteLine("Error inesperado: " + ex.Message);
-                               } 
-                               break; 
+                        int legajoEliminar;
+                        while (true)
+                        {
+                            try
+                            {
+                                legajoEliminar = Convert.ToInt32(Console.ReadLine());
+                                break; // Es correcto si llega hasta aca 
+                            }
+                            catch
+                            {
+                                Console.WriteLine("\nError: Solo se pueden ingresar números.");
+                                Console.Write("\nIngrese nuevamente el legajo: ");
+                            }
+                        }
 
-                      case 12: // LISTAR TODOS LOS ALUMNOS DEL INSTITUTO
+                        try
+                        {
+                            Alumno alumnoEliminar = AprenderMas.BuscarAlumnoPorLegajo(legajoEliminar);
+                            if (alumnoEliminar != null)
+                            {
+                                AprenderMas.EliminarAlumno(alumnoEliminar);
+                                Console.WriteLine("Alumno eliminado correctamente.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Alumno no encontrado.");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Error inesperado: " + ex.Message);
+                        }
+                        break;
+
+                    case 12: // LISTAR TODOS LOS ALUMNOS DEL INSTITUTO
                         Console.WriteLine("=== Lista de alumnos del instituto ===");
                         AprenderMas.ListarTodosLosAlumnos();
                         break;
@@ -998,7 +999,7 @@ namespace InstitutoAprender
                         {
                             try
                             {
-                                Console.Write("\nIdentificador del curso: ");
+                                Console.Write("Identificador del curso: ");
                                 identificadorCursoA = Convert.ToInt32(Console.ReadLine());
                                 break;
                             }
@@ -1019,7 +1020,7 @@ namespace InstitutoAprender
                             try
                             {
                                 cursoA.AgregarAlumno(alumnoAgregar);
-                                Console.WriteLine("Alumno agregado al curso correctamente.");
+                                Console.WriteLine("\nAlumno agregado al curso correctamente.");
                             }
                             catch (AlumnoEnCursoException ex)
                             {
