@@ -935,7 +935,7 @@ namespace InstitutoAprender
                       Console.Write("Ingrese el legajo del alumno a eliminar:");
 
                       int legajoEliminar;
-                      While (True)
+                      while (True)
                       {
                           try
                           {
