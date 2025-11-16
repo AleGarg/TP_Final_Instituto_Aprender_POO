@@ -283,7 +283,7 @@ namespace InstitutoAprender
                         {
                             try
                             {
-                                Console.Write("DNI: ");
+                                Console.Write("DNIss: ");
                                 dniA = Convert.ToInt32(Console.ReadLine());
 
                                 // Verificamos si hay algún alumno con el mismo DNI
@@ -362,18 +362,28 @@ namespace InstitutoAprender
                             try
                             {
                                 if (iteracion == 0)
-                                {
-                                    anadirOpcion = Console.ReadLine();
+{
+    while (true)
+    {
+        Console.Write("Ingrese SI o NO: ");
+        anadirOpcion = Console.ReadLine().Trim().ToUpper();
 
-                                    if (anadirOpcion.ToUpper() != "SI" && anadirOpcion.ToUpper() != "NO")
-                                    {
-                                        throw new Exception();
-                                    }
+        if (anadirOpcion == "SI" || anadirOpcion == "NO")
+            break;
 
-                                    // MOSTRAMOS CURSOS
-                                    Console.WriteLine("\nCursos disponibles: ");
-                                    AprenderMas.ListarCursos();
-                                }
+        Console.WriteLine("Error: Ingrese SI o NO.");
+    }
+
+    if (anadirOpcion == "SI")
+    {
+        Console.WriteLine("\nCursos disponibles:");
+        AprenderMas.ListarCursos();
+    }
+    else
+    {
+        break; // NO → salís y no agregás cursos
+    }
+}
 
                                 string anadirOtro;
                                 bool agregar = true;
