@@ -931,22 +931,50 @@ namespace InstitutoAprender
 
                     // ============================== EXTRAS ==============================
 
-                    case 11: // ELIMINAR ALUMNO DE INSTITUTO
-                        Console.Write("Ingrese el legajo del alumno a eliminar: ");
-                        int legajoEliminar = Convert.ToInt32(Console.ReadLine());
-                        Alumno alumnoEliminar = AprenderMas.BuscarAlumnoPorLegajo(legajoEliminar);
-                        if (alumnoEliminar != null)
-                        {
-                            AprenderMas.EliminarAlumno(alumnoEliminar);
-                            Console.WriteLine("Alumno eliminado correctamente.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Alumno no encontrado.");
-                        }
-                        break;
+                     case 11: // ELIMINAR ALUMNO DE INSTITUTO
+                      Console.Write("Ingrese el legajo del alumno a eliminar:");
 
-                    case 12: // LISTAR TODOS LOS ALUMNOS DEL INSTITUTO
+                      int legajoEliminar;
+                      While (True)
+                      {
+                          try
+                          {
+                              legajoeliminar = Convert.ToInt32(Console.Readline());
+                              break; // Es correcto si llega hasta aca 
+                          }
+                         catch 
+                         {
+                             Console.WriteLine("\nError: Solo se pueden ingresar números.");
+                             Console.Write("Ingrese nuevamente el legajo: ");
+                          } 
+                      }    
+                           try
+                           {
+                               Alumno alumnoeliminar = AprenderMas.BuscarAlumnoPorLegajo(legajoeliminar);
+                               if (alumnoeliminar !null)
+                               {
+                                   AprenderMas.EliminarAlumno(alumnoEliminar);
+                                   Console.WriteLine("Alumno eliminado correctamente.");
+                               }
+                               else 
+                               {
+                                  Console.WriteLine("Alumno no encontrado.");  
+                               }
+                           }
+                               catch (Exception ex)
+                               {
+                                   Console.WriteLine("Error inesperado: " + ex.Message);
+                               } 
+                               break;  
+    
+   
+                          
+                        
+
+         
+    
+
+                        case 12: // LISTAR TODOS LOS ALUMNOS DEL INSTITUTO
                         Console.WriteLine("=== Lista de alumnos del instituto ===");
                         AprenderMas.ListarTodosLosAlumnos();
                         break;
