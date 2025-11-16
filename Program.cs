@@ -362,28 +362,28 @@ namespace InstitutoAprender
                             try
                             {
                                 if (iteracion == 0)
-{
-    while (true)
-    {
-        Console.Write("Ingrese SI o NO: ");
-        anadirOpcion = Console.ReadLine().Trim().ToUpper();
+                            {
+                                while (true)
+                                {
+                                    Console.Write("Ingrese SI o NO: ");
+                                    anadirOpcion = Console.ReadLine().Trim().ToUpper();
 
-        if (anadirOpcion == "SI" || anadirOpcion == "NO")
-            break;
+                                    if (anadirOpcion == "SI" || anadirOpcion == "NO")
+                                        break;
 
-        Console.WriteLine("Error: Ingrese SI o NO.");
-    }
+                                    Console.WriteLine("Error: Ingrese SI o NO.");
+                                }
 
-    if (anadirOpcion == "SI")
-    {
-        Console.WriteLine("\nCursos disponibles:");
-        AprenderMas.ListarCursos();
-    }
-    else
-    {
-        break; // NO → salís y no agregás cursos
-    }
-}
+                                if (anadirOpcion == "SI")
+                                {
+                                    Console.WriteLine("\nCursos disponibles:");
+                                    AprenderMas.ListarCursos();
+                                }
+                                else
+                                {
+                                    break;
+                                }
+                            }
 
                                 string anadirOtro;
                                 bool agregar = true;
