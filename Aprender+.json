@@ -2,6 +2,7 @@
   "Nombre": "Aprender\u002B",
   "ListaCursos": [
     {
+      "Identificador": 0,
       "Nombre": "Programaci\u00F3n con Objetos",
       "Docente": {
         "Sueldo": 500000,
@@ -13,28 +14,60 @@
       "Inscriptos": [
         {
           "Legajo": 1001,
-          "Nota": 9,
+          "NotasPorCurso": {
+            "0": 9,
+            "2": 7
+          },
           "Nombre": "Pignata",
           "Apellido": "Agustin",
           "Dni": 2520620
         },
         {
           "Legajo": 1002,
-          "Nota": 10,
+          "NotasPorCurso": {
+            "0": 10,
+            "1": 8,
+            "3": 10
+          },
           "Nombre": "Alejo",
           "Apellido": "Brandan",
           "Dni": 42568921
         },
         {
           "Legajo": 1004,
-          "Nota": 8,
+          "NotasPorCurso": {
+            "0": 7,
+            "2": 9,
+            "3": 8
+          },
           "Nombre": "Pepito",
           "Apellido": "Grillo",
           "Dni": 48234652
+        },
+        {
+          "Legajo": 1007,
+          "NotasPorCurso": {
+            "0": 8,
+            "4": 9
+          },
+          "Nombre": "Sofia",
+          "Apellido": "Marin",
+          "Dni": 40123456
+        },
+        {
+          "Legajo": 1016,
+          "NotasPorCurso": {
+            "0": 9,
+            "1": 8
+          },
+          "Nombre": "Joaquin",
+          "Apellido": "Vega",
+          "Dni": 50123456
         }
       ]
     },
     {
+      "Identificador": 1,
       "Nombre": "Matem\u00E1tica",
       "Docente": {
         "Sueldo": 450000,
@@ -46,21 +79,69 @@
       "Inscriptos": [
         {
           "Legajo": 1002,
-          "Nota": 10,
+          "NotasPorCurso": {
+            "0": 10,
+            "1": 8,
+            "3": 10
+          },
           "Nombre": "Alejo",
           "Apellido": "Brandan",
           "Dni": 42568921
         },
         {
           "Legajo": 1003,
-          "Nota": 10,
+          "NotasPorCurso": {
+            "1": 7,
+            "2": 8,
+            "3": 9
+          },
           "Nombre": "Fabrizio",
           "Apellido": "Insarrualde",
           "Dni": 4552364
+        },
+        {
+          "Legajo": 1005,
+          "NotasPorCurso": {
+            "1": 9,
+            "2": 10,
+            "4": 5
+          },
+          "Nombre": "David",
+          "Apellido": "Quint",
+          "Dni": 48220123
+        },
+        {
+          "Legajo": 1015,
+          "NotasPorCurso": {
+            "1": 10
+          },
+          "Nombre": "Nicolas",
+          "Apellido": "Rivera",
+          "Dni": 49012345
+        },
+        {
+          "Legajo": 1016,
+          "NotasPorCurso": {
+            "0": 9,
+            "1": 8
+          },
+          "Nombre": "Joaquin",
+          "Apellido": "Vega",
+          "Dni": 50123456
+        },
+        {
+          "Legajo": 1018,
+          "NotasPorCurso": {
+            "1": 7
+          },
+          "Nombre": "Isabella",
+          "Apellido": "Morales",
+          "Dni": 52345678
         }
       ]
     },
     {
+      "Identificador": 2,
       "Nombre": "\u00C1lgebra",
       "Docente": {
         "Sueldo": 550000,
@@ -68,32 +149,65 @@
         "Apellido": "Montana",
         "Dni": 77223311
       },
-      "CupoMaximo": 20,
+      "CupoMaximo": 42,
       "Inscriptos": [
         {
           "Legajo": 1001,
-          "Nota": 9,
+          "NotasPorCurso": {
+            "0": 9,
+            "2": 7
+          },
           "Nombre": "Pignata",
           "Apellido": "Agustin",
           "Dni": 2520620
         },
         {
           "Legajo": 1003,
-          "Nota": 10,
+          "NotasPorCurso": {
+            "1": 7,
+            "2": 8,
+            "3": 9
+          },
           "Nombre": "Fabrizio",
           "Apellido": "Insarrualde",
           "Dni": 4552364
         },
         {
           "Legajo": 1004,
-          "Nota": 8,
+          "NotasPorCurso": {
+            "0": 7,
+            "2": 9,
+            "3": 8
+          },
           "Nombre": "Pepito",
           "Apellido": "Grillo",
           "Dni": 48234652
+        },
+        {
+          "Legajo": 1005,
+          "NotasPorCurso": {
+            "1": 9,
+            "2": 10,
+            "4": 5
+          },
+          "Nombre": "David",
+          "Apellido": "Quint",
+          "Dni": 48220123
+        },
+        {
+          "Legajo": 1017,
+          "NotasPorCurso": {
+            "2": 6,
+            "3": 6
+          },
+          "Nombre": "Emilia",
+          "Apellido": "Cruz",
+          "Dni": 51234567
         }
       ]
     },
     {
+      "Identificador": 3,
       "Nombre": "Taller de Ingenier\u00EDa",
       "Docente": {
         "Sueldo": 690000,
@@ -105,24 +219,205 @@
       "Inscriptos": [
         {
           "Legajo": 1002,
-          "Nota": 10,
+          "NotasPorCurso": {
+            "0": 10,
+            "1": 8,
+            "3": 10
+          },
           "Nombre": "Alejo",
           "Apellido": "Brandan",
           "Dni": 42568921
         },
         {
           "Legajo": 1003,
-          "Nota": 10,
+          "NotasPorCurso": {
+            "1": 7,
+            "2": 8,
+            "3": 9
+          },
           "Nombre": "Fabrizio",
           "Apellido": "Insarrualde",
           "Dni": 4552364
         },
         {
           "Legajo": 1004,
-          "Nota": 8,
+          "NotasPorCurso": {
+            "0": 7,
+            "2": 9,
+            "3": 8
+          },
           "Nombre": "Pepito",
           "Apellido": "Grillo",
           "Dni": 48234652
+        },
+        {
+          "Legajo": 1012,
+          "NotasPorCurso": {
+            "3": 7,
+            "5": 10
+          },
+          "Nombre": "Valentina",
+          "Apellido": "Ramirez",
+          "Dni": 46789012
+        },
+        {
+          "Legajo": 1017,
+          "NotasPorCurso": {
+            "2": 6,
+            "3": 6
+          },
+          "Nombre": "Emilia",
+          "Apellido": "Cruz",
+          "Dni": 51234567
+        },
+        {
+          "Legajo": 1008,
+          "NotasPorCurso": {
+            "3": 9,
+            "5": 10
+          },
+          "Nombre": "Camila",
+          "Apellido": "Lopez",
+          "Dni": 42345678
+        }
+      ]
+    },
+    {
+      "Identificador": 4,
+      "Nombre": "F\u00EDsica",
+      "Docente": {
+        "Sueldo": 9000.35,
+        "Nombre": "Julian",
+        "Apellido": "\u00C1lvarez",
+        "Dni": 42260908
+      },
+      "CupoMaximo": 32,
+      "Inscriptos": [
+        {
+          "Legajo": 1005,
+          "NotasPorCurso": {
+            "1": 9,
+            "2": 10,
+            "4": 5
+          },
+          "Nombre": "David",
+          "Apellido": "Quint",
+          "Dni": 48220123
+        },
+        {
+          "Legajo": 1006,
+          "NotasPorCurso": {
+            "4": 3
+          },
+          "Nombre": "Lautaro",
+          "Apellido": "del Campo",
+          "Dni": 43453942
+        },
+        {
+          "Legajo": 1007,
+          "NotasPorCurso": {
+            "0": 8,
+            "4": 9
+          },
+          "Nombre": "Sofia",
+          "Apellido": "Marin",
+          "Dni": 40123456
+        },
+        {
+          "Legajo": 1019,
+          "NotasPorCurso": {
+            "4": 10
+          },
+          "Nombre": "Camilo",
+          "Apellido": "Ortiz",
+          "Dni": 53456789
+        },
+        {
+          "Legajo": 1020,
+          "NotasPorCurso": {
+            "4": 6
+          },
+          "Nombre": "Adrian",
+          "Apellido": "Gutierrez",
+          "Dni": 54567890
+        },
+        {
+          "Legajo": 1011,
+          "NotasPorCurso": {
+            "4": 4
+          },
+          "Nombre": "Mateo",
+          "Apellido": "Sanchez",
+          "Dni": 45678901
+        }
+      ]
+    },
+    {
+      "Identificador": 5,
+      "Nombre": "Qu\u00EDmica",
+      "Docente": {
+        "Sueldo": 696969.99,
+        "Nombre": "frionel",
+        "Apellido": "fressi",
+        "Dni": 38456912
+      },
+      "CupoMaximo": 12,
+      "Inscriptos": [
+        {
+          "Legajo": 1008,
+          "NotasPorCurso": {
+            "3": 9,
+            "5": 10
+          },
+          "Nombre": "Camila",
+          "Apellido": "Lopez",
+          "Dni": 42345678
+        },
+        {
+          "Legajo": 1009,
+          "NotasPorCurso": {
+            "5": 8
+          },
+          "Nombre": "Martina",
+          "Apellido": "Gomez",
+          "Dni": 43456789
+        },
+        {
+          "Legajo": 1010,
+          "NotasPorCurso": {
+            "5": 7
+          },
+          "Nombre": "Lucas",
+          "Apellido": "Fernandez",
+          "Dni": 44567890
+        },
+        {
+          "Legajo": 1012,
+          "NotasPorCurso": {
+            "3": 7,
+            "5": 10
+          },
+          "Nombre": "Valentina",
+          "Apellido": "Ramirez",
+          "Dni": 46789012
+        },
+        {
+          "Legajo": 1013,
+          "NotasPorCurso": {
+            "5": 6
+          },
+          "Nombre": "Diego",
+          "Apellido": "Torres",
+          "Dni": 47890123
+        },
+        {
+          "Legajo": 1014,
+          "NotasPorCurso": {
+            "5": 10
+          },
+          "Nombre": "Santiago",
+          "Apellido": "Flores",
+          "Dni": 48901234
         }
       ]
     }
@@ -130,52 +425,204 @@
   "ListaAlumnos": [
     {
       "Legajo": 1001,
-      "Nota": 9,
+      "NotasPorCurso": {
+        "0": 9,
+        "2": 7
+      },
       "Nombre": "Pignata",
       "Apellido": "Agustin",
       "Dni": 2520620
     },
     {
       "Legajo": 1002,
-      "Nota": 10,
+      "NotasPorCurso": {
+        "0": 10,
+        "1": 8,
+        "3": 10
+      },
       "Nombre": "Alejo",
       "Apellido": "Brandan",
       "Dni": 42568921
     },
     {
       "Legajo": 1003,
-      "Nota": 10,
+      "NotasPorCurso": {
+        "1": 7,
+        "2": 8,
+        "3": 9
+      },
       "Nombre": "Fabrizio",
       "Apellido": "Insarrualde",
       "Dni": 4552364
     },
     {
       "Legajo": 1004,
-      "Nota": 8,
+      "NotasPorCurso": {
+        "0": 7,
+        "2": 9,
+        "3": 8
+      },
       "Nombre": "Pepito",
       "Apellido": "Grillo",
       "Dni": 48234652
     },
     {
       "Legajo": 1005,
-      "Nota": 6,
+      "NotasPorCurso": {
+        "1": 9,
+        "2": 10,
+        "4": 5
+      },
       "Nombre": "David",
       "Apellido": "Quint",
       "Dni": 48220123
     },
     {
       "Legajo": 1006,
-      "Nota": 10,
+      "NotasPorCurso": {
+        "4": 3
+      },
       "Nombre": "Lautaro",
       "Apellido": "del Campo",
       "Dni": 43453942
     },
     {
-      "Legajo": 444,
-      "Nota": 3,
-      "Nombre": "pepe",
-      "Apellido": "ele",
-      "Dni": 222
+      "Legajo": 1007,
+      "NotasPorCurso": {
+        "0": 8,
+        "4": 9
+      },
+      "Nombre": "Sofia",
+      "Apellido": "Marin",
+      "Dni": 40123456
+    },
+    {
+      "Legajo": 1008,
+      "NotasPorCurso": {
+        "3": 9,
+        "5": 10
+      },
+      "Nombre": "Camila",
+      "Apellido": "Lopez",
+      "Dni": 42345678
+    },
+    {
+      "Legajo": 1009,
+      "NotasPorCurso": {
+        "5": 8
+      },
+      "Nombre": "Martina",
+      "Apellido": "Gomez",
+      "Dni": 43456789
+    },
+    {
+      "Legajo": 1010,
+      "NotasPorCurso": {
+        "5": 7
+      },
+      "Nombre": "Lucas",
+      "Apellido": "Fernandez",
+      "Dni": 44567890
+    },
+    {
+      "Legajo": 1012,
+      "NotasPorCurso": {
+        "3": 7,
+        "5": 10
+      },
+      "Nombre": "Valentina",
+      "Apellido": "Ramirez",
+      "Dni": 46789012
+    },
+    {
+      "Legajo": 1013,
+      "NotasPorCurso": {
+        "5": 6
+      },
+      "Nombre": "Diego",
+      "Apellido": "Torres",
+      "Dni": 47890123
+    },
+    {
+      "Legajo": 1014,
+      "NotasPorCurso": {
+        "5": 10
+      },
+      "Nombre": "Santiago",
+      "Apellido": "Flores",
+      "Dni": 48901234
+    },
+    {
+      "Legajo": 1015,
+      "NotasPorCurso": {
+        "1": 10
+      },
+      "Nombre": "Nicolas",
+      "Apellido": "Rivera",
+      "Dni": 49012345
+    },
+    {
+      "Legajo": 1016,
+      "NotasPorCurso": {
+        "0": 9,
+        "1": 8
+      },
+      "Nombre": "Joaquin",
+      "Apellido": "Vega",
+      "Dni": 50123456
+    },
+    {
+      "Legajo": 1017,
+      "NotasPorCurso": {
+        "2": 6,
+        "3": 6
+      },
+      "Nombre": "Emilia",
+      "Apellido": "Cruz",
+      "Dni": 51234567
+    },
+    {
+      "Legajo": 1018,
+      "NotasPorCurso": {
+        "1": 7
+      },
+      "Nombre": "Isabella",
+      "Apellido": "Morales",
+      "Dni": 52345678
+    },
+    {
+      "Legajo": 1019,
+      "NotasPorCurso": {
+        "4": 10
+      },
+      "Nombre": "Camilo",
+      "Apellido": "Ortiz",
+      "Dni": 53456789
+    },
+    {
+      "Legajo": 1020,
+      "NotasPorCurso": {
+        "4": 6
+      },
+      "Nombre": "Adrian",
+      "Apellido": "Gutierrez",
+      "Dni": 54567890
+    },
+    {
+      "Legajo": 1011,
+      "NotasPorCurso": {
+        "4": 4
+      },
+      "Nombre": "Mateo",
+      "Apellido": "Sanchez",
+      "Dni": 45678901
+    },
+    {
+      "Legajo": 1021,
+      "NotasPorCurso": {},
+      "Nombre": "Javier",
+      "Apellido": "Rojas",
+      "Dni": 55678901
     }
   ]
 }

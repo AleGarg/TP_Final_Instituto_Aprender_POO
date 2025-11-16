@@ -142,7 +142,7 @@ namespace InstitutoAprender
         // 5. Listar cursos con su docente responsable y la cantidad de inscriptos.
         public void MostrarDatos()
         {
-            Console.WriteLine("Curso: " + Identificador + " - " + Nombre + " | Docente: " + Docente.Nombre + " " + Docente.Apellido + " | Cupo Máximo: " + CupoMaximo);
+            Console.WriteLine("Curso: " + Identificador + " - " + Nombre + " | Docente: " + Docente.Nombre + " " + Docente.Apellido + " | Inscriptos: " + Inscriptos.Count() + "/" + CupoMaximo);
         }
 
         // 7. Transferir un alumno de un curso a otro. Se debe validar la existencia del alumno en el curso origen y el cupo disponible en el curso destino.
