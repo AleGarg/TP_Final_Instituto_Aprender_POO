@@ -96,7 +96,7 @@ namespace InstitutoAprender
                 AprenderMas.InscribirAlumno(alumno21);
 
                 // Crear cursos y asignar alumnos/docentes
-                List<Alumno> alumnosProg = new List<Alumno>() { alumno1, alumno2, alumno4, alumno7, alumno15, alumno21 };
+                List<Alumno> alumnosProg = new List<Alumno>() { alumno1, alumno2, alumno4, alumno7, alumno15 };
                 List<Alumno> alumnosMat = new List<Alumno>() { alumno2, alumno3, alumno5, alumno14, alumno15, alumno17 };
                 List<Alumno> alumnosAlg = new List<Alumno>() { alumno1, alumno3, alumno4, alumno5, alumno16 };
                 List<Alumno> alumnosTaller = new List<Alumno>() { alumno2, alumno3, alumno4, alumno11, alumno16, alumno8 };
@@ -106,25 +106,76 @@ namespace InstitutoAprender
                 Curso progObjetos = new Curso(AprenderMas.ListaCursos.Count(), "Programación con Objetos", Docente1, 5, alumnosProg);
                 AprenderMas.AgregarCurso(progObjetos);
 
-                // VERIFICAR SI ALUMNO ESTÁ EN EL CURSO PRIMERO, LUEGO INTENTAR TRANSFERIR
-
                 Curso mat = new Curso(AprenderMas.ListaCursos.Count(), "Matemática", Docente2, 20, alumnosMat);
                 AprenderMas.AgregarCurso(mat);
 
-                Curso alg = new Curso(AprenderMas.ListaCursos.Count(), "Álgebra", Docente3, 20, alumnosAlg);
+                Curso alg = new Curso(AprenderMas.ListaCursos.Count(), "Álgebra", Docente3, 42, alumnosAlg);
                 AprenderMas.AgregarCurso(alg);
 
                 Curso tallerIng = new Curso(AprenderMas.ListaCursos.Count(), "Taller de Ingeniería", Docente4, 20, alumnosTaller);
                 AprenderMas.AgregarCurso(tallerIng);
 
-                Curso fisica = new Curso(AprenderMas.ListaCursos.Count(), "Física", Docente5, 20, alumnosFisica);
+                Curso fisica = new Curso(AprenderMas.ListaCursos.Count(), "Física", Docente5, 32, alumnosFisica);
                 AprenderMas.AgregarCurso(fisica);
 
-                Curso quimica = new Curso(AprenderMas.ListaCursos.Count(), "Química", Docente6, 20, alumnosQuimica);
+                Curso quimica = new Curso(AprenderMas.ListaCursos.Count(), "Química", Docente6, 12, alumnosQuimica);
                 AprenderMas.AgregarCurso(quimica);
 
-                // usar identificacor para cursos y mostrarlos
+                // Asignamos notas para cada alumno en cada curso
+                
+                // Curso: Programación con Objetos (ID = 0)
+                // Alumnos: { alumno1, alumno2, alumno4, alumno7, alumno15 }
+                alumno1.RegistrarNota(0, 9);
+                alumno2.RegistrarNota(0, 10);
+                alumno4.RegistrarNota(0, 7);
+                alumno7.RegistrarNota(0, 8);
+                alumno15.RegistrarNota(0, 9);
 
+                // Curso: Matemática (ID = 1)
+                // Alumnos: { alumno2, alumno3, alumno5, alumno14, alumno15, alumno17 }
+                alumno2.RegistrarNota(1, 8);
+                alumno3.RegistrarNota(1, 7);
+                alumno5.RegistrarNota(1, 9);
+                alumno14.RegistrarNota(1, 10);
+                alumno15.RegistrarNota(1, 8);
+                alumno17.RegistrarNota(1, 7);
+
+                // Curso: Álgebra (ID = 2)
+                // Alumnos: { alumno1, alumno3, alumno4, alumno5, alumno16 }
+                alumno1.RegistrarNota(2, 7);
+                alumno3.RegistrarNota(2, 8);
+                alumno4.RegistrarNota(2, 9);
+                alumno5.RegistrarNota(2, 10);
+                alumno16.RegistrarNota(2, 6);
+
+
+
+                // Curso: Taller de Ingeniería (ID = 3)
+                // Alumnos: { alumno2, alumno3, alumno4, alumno11, alumno16, alumno8 }
+                alumno2.RegistrarNota(3, 10);
+                alumno3.RegistrarNota(3, 9);
+                alumno4.RegistrarNota(3, 8);
+                alumno11.RegistrarNota(3, 7);
+                alumno16.RegistrarNota(3, 6);
+                alumno8.RegistrarNota(3, 9);
+
+                // Curso: Física (ID = 4)
+                // Alumnos: { alumno5, alumno6, alumno7, alumno18, alumno19, alumno20 }
+                alumno5.RegistrarNota(4, 5);
+                alumno6.RegistrarNota(4, 3);
+                alumno7.RegistrarNota(4, 9);
+                alumno18.RegistrarNota(4, 10);
+                alumno19.RegistrarNota(4, 6);
+                alumno20.RegistrarNota(4, 4);
+
+                // Curso: Química (ID = 5)
+                // Alumnos: { alumno8, alumno9, alumno10, alumno11, alumno12, alumno13 }
+                alumno8.RegistrarNota(5, 10);
+                alumno9.RegistrarNota(5, 8);
+                alumno10.RegistrarNota(5, 7);
+                alumno11.RegistrarNota(5, 10);
+                alumno12.RegistrarNota(5, 6);
+                alumno13.RegistrarNota(5, 10);
             }
 
             // Menú principal
@@ -923,6 +974,12 @@ namespace InstitutoAprender
                     case 0: // SALIR
                         Console.WriteLine("Saliendo del sistema...");
                         salir = true;
+                        break;
+
+                    case 17: // TEST
+                        Curso progObjetos = AprenderMas.BuscarCursoPorIdentificador(0); 
+                        progObjetos.MostrarDatos();
+                        Console.WriteLine("inscriptos: "+progObjetos.CantidadInscriptos());
                         break;
 
                     default:

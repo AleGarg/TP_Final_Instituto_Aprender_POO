@@ -155,6 +155,7 @@ namespace InstitutoAprender
             {
                 a.MostrarDatos();
             }
+            Console.WriteLine("\nCantidad de alumnos en el instituto: " + listaAlumnos.Count());
         }
 
         // Listar todos los cursos

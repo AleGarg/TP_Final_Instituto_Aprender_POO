@@ -78,15 +78,15 @@ namespace InstitutoAprender
         // 1. Inscribir alumno en un curso.
         public void AgregarAlumno(Alumno alumno)
         {
-            // 1. Si el curso ya se encuentra lleno, se debe lanzar una excepción (CupoLlenoException).
-            if (Inscriptos.Count >= CupoMaximo)
-            {
-                throw new CupoLlenoException("Curso lleno");
-            }
             // Si el alumno ya está en el curso, lanza una excepción.
             if (Inscriptos.Contains(alumno))
             {
                 throw new AlumnoEnCursoException("El alumno ya está en el curso.");
+            }
+            // 1. Si el curso ya se encuentra lleno, se debe lanzar una excepción (CupoLlenoException).
+            if (Inscriptos.Count >= CupoMaximo)
+            {
+                throw new CupoLlenoException("Curso lleno");
             }
             Inscriptos.Add(alumno);
         }
