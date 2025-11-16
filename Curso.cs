@@ -90,7 +90,7 @@ namespace InstitutoAprender
             }
             Inscriptos.Add(alumno);
         }
-        
+
         // 2. Eliminar alumno de un curso. 
         public void EliminarAlumno(Alumno alumno)
         {
@@ -100,23 +100,29 @@ namespace InstitutoAprender
             }
         }
 
-        // 3. Registrar nota de examen para un alumno en un curso
-        public double RegistrarNotas()
-        {
-            double sumaNotas = 0;
-            foreach (Alumno alumno in Inscriptos)
-            {
-                sumaNotas += alumno.Nota;
-            }
-            return sumaNotas;
-        }
-
         // 8. Mostrar el promedio general de notas de cada curso.
         public double Promedio()
         {
-            if (Inscriptos.Count == 0)
+            double sumaNotas = 0;
+            int alumnosConNota = 0;
+
+            foreach (Alumno alumno in Inscriptos)
+            {
+                double? nota = alumno.ObtenerNota(this.Identificador);
+
+                if (nota.HasValue)
+                {
+                    sumaNotas += nota.Value;
+                    alumnosConNota++;
+                }
+            }
+
+            if (alumnosConNota == 0)
+            {
                 return 0;
-            return RegistrarNotas() / Inscriptos.Count;
+            }
+
+            return sumaNotas / alumnosConNota;
         }
 
         public int CantidadInscriptos()

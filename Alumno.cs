@@ -7,13 +7,12 @@ namespace InstitutoAprender
 	{
 		// Atributos privados
 		private int legajo;
-		// No sé si nota iría bien, depende también de qué curso
-		private double nota;
-		// Diccionario = Valor notas 
-		private Dictionary<double> notasporcurso
-		
-		
 
+		// Diccionario = Valor notas 
+		// Llave (TKey) = Identificador del curso
+		// Valor (TValue) = Nota
+		private Dictionary<int, double> notasporcurso;
+		
 		public int Legajo
         {
 			set {
@@ -24,22 +23,11 @@ namespace InstitutoAprender
 				return legajo;
 			} 
         }
-		public double Nota
-        {
-			get
-			{
-				return nota;
-			}
-            set
-            {
-				nota = value;
-            }
-        }
-		Public double notasporcurso
+		public Dictionary<int, double> NotasPorCurso
 		{
 		    get
 			{ 
-			     return notasporcurso; 
+			    return notasporcurso; 
 			}
 			set
 			{
@@ -48,31 +36,40 @@ namespace InstitutoAprender
 		
 		}
 
-		// Constructor vacío la clase alumno
-
-		// Alejo 17-10: No sé si haga falta esto, por si las dudas no lo borro pero lo comento
-
-		// public Alumno()
-		// {
-		// 	// Inicializacion para ver los los string int y double 
-		// 	this.nombre = "";
-		// 	this.legajo = 0;
-		// 	this.nota = 0.0;
-		// }
-
 		// Construimos los parametros 
-		public Alumno(string nombre, string apellido, int dni, int legajo, double nota) : base(nombre, apellido, dni)
+		public Alumno(string nombre, string apellido, int dni, int legajo) : base(nombre, apellido, dni)
 		{
 			Legajo = legajo;
-			Nota = nota;
-			Notasporcurso = New Dictionary<double>();
+
+			// Hacemos un diccionario vacío para almacenar las notas, pero no lo pedimos obligatoriamente al crear un alumno
+			NotasPorCurso = new Dictionary<int, double>();
 		}
-	
+
+        // 3. Registrar nota de examen para un alumno en un curso
+		public void RegistrarNota(int idCurso, double nota)
+        {
+            // Si la nota no existe la agrega, sino la actualiza
+            NotasPorCurso[idCurso] = nota;
+        }
+
+		// double? para que pueda devolver null
+		public double? ObtenerNota(int idCurso)
+        {
+            // TryGetValue se usa para buscar un valor en un diccionario
+            if (NotasPorCurso.TryGetValue(idCurso, out double nota))
+            {
+                // Si la encontró, devuelve la nota
+                return nota;
+            }
+            
+            // Si no encontró alguna nota para ese curso, devuelve null
+            return null; 
+        }
 		
+		// Mostramos datos (sin la nota ahora)
 		public override void MostrarDatos()
 		{
-			Console.WriteLine("Alumno: " + Nombre + " " + Apellido + " | DNI: " + Dni + " | Legajo: " + Legajo + " | Nota: " + Nota);
+			Console.WriteLine("Alumno: " + Nombre + " " + Apellido + " | DNI: " + Dni + " | Legajo: " + Legajo);
 		}
 	}
 }
-

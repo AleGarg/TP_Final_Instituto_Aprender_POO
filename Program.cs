@@ -49,27 +49,28 @@ namespace InstitutoAprender
                 Docente Docente6 = new Docente("frionel", "fressi", 38456912, 696969.99);
 
                 // Alumnos
-                Alumno alumno1 = new Alumno("Pignata", "Agustin", 2520620, 1001, 9);
-                Alumno alumno2 = new Alumno("Alejo", "Brandan", 42568921, 1002, 10);
-                Alumno alumno3 = new Alumno("Fabrizio", "Insarrualde", 4552364, 1003, 10);
-                Alumno alumno4 = new Alumno("Pepito", "Grillo", 48234652, 1004, 8);
-                Alumno alumno5 = new Alumno("David", "Quint", 48220123, 1005, 6);
-                Alumno alumno6 = new Alumno("Lautaro", "del Campo", 43453942, 1006, 10);
-                Alumno alumno7 = new Alumno("Sofia", "Marin", 40123456, 1007, 9);
-                Alumno alumno8 = new Alumno("Camila", "Lopez", 42345678, 1008, 7);
-                Alumno alumno9 = new Alumno("Martina", "Gomez", 43456789, 1009, 8);
-                Alumno alumno10 = new Alumno("Lucas", "Fernandez", 44567890, 1010, 9);
-                Alumno alumno20 = new Alumno("Mateo", "Sanchez", 45678901, 1011, 10);
-                Alumno alumno11 = new Alumno("Valentina", "Ramirez", 46789012, 1012, 7);
-                Alumno alumno12 = new Alumno("Diego", "Torres", 47890123, 1013, 8);
-                Alumno alumno13 = new Alumno("Santiago", "Flores", 48901234, 1014, 9);
-                Alumno alumno14 = new Alumno("Nicolas", "Rivera", 49012345, 1015, 6);
-                Alumno alumno15 = new Alumno("Joaquin", "Vega", 50123456, 1016, 10);
-                Alumno alumno16 = new Alumno("Emilia", "Cruz", 51234567, 1017, 9);
-                Alumno alumno17 = new Alumno("Isabella", "Morales", 52345678, 1018, 8);
-                Alumno alumno18 = new Alumno("Camilo", "Ortiz", 53456789, 1019, 7);
-                Alumno alumno19 = new Alumno("Adrian", "Gutierrez", 54567890, 1020, 10);
-                Alumno alumno21 = new Alumno("Javier", "Rojas", 55678901, 1021, 9);
+                // Ya no pedimos la nota acá, depende de cada curso
+                Alumno alumno1 = new Alumno("Pignata", "Agustin", 2520620, 1001);
+                Alumno alumno2 = new Alumno("Alejo", "Brandan", 42568921, 1002);
+                Alumno alumno3 = new Alumno("Fabrizio", "Insarrualde", 4552364, 1003);
+                Alumno alumno4 = new Alumno("Pepito", "Grillo", 48234652, 1004);
+                Alumno alumno5 = new Alumno("David", "Quint", 48220123, 1005);
+                Alumno alumno6 = new Alumno("Lautaro", "del Campo", 43453942, 1006);
+                Alumno alumno7 = new Alumno("Sofia", "Marin", 40123456, 1007);
+                Alumno alumno8 = new Alumno("Camila", "Lopez", 42345678, 1008);
+                Alumno alumno9 = new Alumno("Martina", "Gomez", 43456789, 1009);
+                Alumno alumno10 = new Alumno("Lucas", "Fernandez", 44567890, 1010);
+                Alumno alumno20 = new Alumno("Mateo", "Sanchez", 45678901, 1011);
+                Alumno alumno11 = new Alumno("Valentina", "Ramirez", 46789012, 1012);
+                Alumno alumno12 = new Alumno("Diego", "Torres", 47890123, 1013);
+                Alumno alumno13 = new Alumno("Santiago", "Flores", 48901234, 1014);
+                Alumno alumno14 = new Alumno("Nicolas", "Rivera", 49012345, 1015);
+                Alumno alumno15 = new Alumno("Joaquin", "Vega", 50123456, 1016);
+                Alumno alumno16 = new Alumno("Emilia", "Cruz", 51234567, 1017);
+                Alumno alumno17 = new Alumno("Isabella", "Morales", 52345678, 1018);
+                Alumno alumno18 = new Alumno("Camilo", "Ortiz", 53456789, 1019);
+                Alumno alumno19 = new Alumno("Adrian", "Gutierrez", 54567890, 1020);
+                Alumno alumno21 = new Alumno("Javier", "Rojas", 55678901, 1021);
 
                 // Inscribir alumnos al instituto
                 AprenderMas.InscribirAlumno(alumno1);
@@ -97,9 +98,9 @@ namespace InstitutoAprender
                 // Crear cursos y asignar alumnos/docentes
                 List<Alumno> alumnosProg = new List<Alumno>() { alumno1, alumno2, alumno4, alumno7, alumno15, alumno21 };
                 List<Alumno> alumnosMat = new List<Alumno>() { alumno2, alumno3, alumno5, alumno14, alumno15, alumno17 };
-                List<Alumno> alumnosAlg = new List<Alumno>() { alumno1, alumno3, alumno4, alumno5,alumno16 };
+                List<Alumno> alumnosAlg = new List<Alumno>() { alumno1, alumno3, alumno4, alumno5, alumno16 };
                 List<Alumno> alumnosTaller = new List<Alumno>() { alumno2, alumno3, alumno4, alumno11, alumno16, alumno8 };
-                List<Alumno> alumnosFisica = new List<Alumno>() { alumno5, alumno6, alumno7,alumno18, alumno19, alumno20 };
+                List<Alumno> alumnosFisica = new List<Alumno>() { alumno5, alumno6, alumno7, alumno18, alumno19, alumno20 };
                 List<Alumno> alumnosQuimica = new List<Alumno>() { alumno8, alumno9, alumno10, alumno11, alumno12, alumno13 };
 
                 Curso progObjetos = new Curso(AprenderMas.ListaCursos.Count(), "Programación con Objetos", Docente1, 5, alumnosProg);
@@ -295,20 +296,7 @@ namespace InstitutoAprender
                             }
                         }
 
-                        try
-                        {
-                            Console.Write("Nota inicial: ");
-                            notaA = Convert.ToDouble(Console.ReadLine());
-                        }
-                        catch (FormatException)
-                        {
-                            Console.WriteLine("Error: Solo se pueden ingresar números.");
-                            Console.WriteLine("\nPresione una tecla para continuar...");
-                            Console.ReadKey(true);
-                            continue; // Vuelve al inicio del while
-                        }
-
-                        Alumno nuevo = new Alumno(nombreA, apellidoA, dniA, legajoA, notaA);
+                        Alumno nuevo = new Alumno(nombreA, apellidoA, dniA, legajoA);
                         AprenderMas.InscribirAlumno(nuevo);
                         Console.WriteLine("\n=== Alumno inscrito en el instituto correctamente ===\n");
 
@@ -409,7 +397,87 @@ namespace InstitutoAprender
                                     {
                                         cursoAnadir.AgregarAlumno(nuevo);
                                         Console.WriteLine("\n=== Alumno agregado al curso correctamente ===\n");
+
+                                        // ======== PEDIR NOTA =========
+                                        string anadirNota;
+                                        bool agregarNota = true;
+
+                                        Console.WriteLine("\n¿Desea añadir la nota del alumno para este curso? Escriba SI o NO.");
+                                        while (true)
+                                        {
+                                            try
+                                            {
+                                                anadirNota = Console.ReadLine();
+
+                                                // Si el usuario escribe algo distinto a SI o NO hay excepción y lo pide de vuelta
+                                                if (anadirNota.ToUpper() != "SI" && anadirNota.ToUpper() != "NO")
+                                                {
+                                                    throw new Exception("Ingrese SI o NO.");
+                                                }
+
+                                                // Si escribió SI:
+                                                if (anadirNota.ToUpper() == "SI")
+                                                {
+                                                    // Pedimos la nota con try-catch
+                                                    try
+                                                    {
+                                                        Console.Write("Nota inicial: ");
+                                                        notaA = Convert.ToDouble(Console.ReadLine());
+
+                                                        if (notaA < 1 || notaA > 10)
+                                                        {
+                                                            throw new ArgumentOutOfRangeException("El valor debe estar entre 1 y 10.");
+                                                        }
+
+                                                        nuevo.RegistrarNota(cursoAnadir.Identificador, notaA);
+                                                        Console.WriteLine("¡Nota registrada exitosamente!");
+                                                        break;
+                                                    }
+                                                    catch (FormatException)
+                                                    {
+                                                        Console.WriteLine("Error: Solo se pueden ingresar números.");
+                                                        Console.WriteLine("\nPresione una tecla para continuar...");
+                                                        Console.ReadKey(true);
+                                                        continue; // Vuelve al inicio del while
+                                                    }
+                                                    catch (ArgumentOutOfRangeException ex)
+                                                    {
+                                                        Console.WriteLine("\nError: " + ex.Message);
+                                                        Console.WriteLine("Presione una tecla para continuar...");
+                                                        Console.ReadKey(true);
+                                                        continue; // Vuelve al inicio del while
+                                                    }
+                                                }
+                                                // Si escribió NO:
+                                                if (anadirNota.ToUpper() == "NO")
+                                                {
+                                                    Console.WriteLine("El alumno se agregó sin nota inicial.");
+                                                    break;
+                                                }
+                                            }
+                                            catch (Exception)
+                                            {
+                                                Console.WriteLine("Error: Ingrese SI o NO.");
+                                                continue; // Vuelve al inicio del while
+                                            }
+                                        }
                                     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                     catch (CupoLlenoException ex)
                                     {
                                         Console.WriteLine("\nError: " + ex.Message);
@@ -622,10 +690,9 @@ namespace InstitutoAprender
                             }
                         }
 
-                        // Console.Write("Legajo del alumno: ");
-                        // int legajoNota = Convert.ToInt32(Console.ReadLine());
-
                         Alumno alumnoNota = AprenderMas.BuscarAlumnoPorLegajo(legajoNota);
+
+                        // Si alumnoNota existe:
                         if (alumnoNota != null)
                         {
                             double nuevaNota = 1;
@@ -654,11 +721,13 @@ namespace InstitutoAprender
                                 {
                                     Console.WriteLine("\nError: " + ex.Message);
                                     Console.WriteLine("Presione una tecla para continuar...");
-                                    Console.ReadKey();
+                                    Console.ReadKey(true);
+                                    continue; // Vuelve al inicio del while
                                 }
                             }
-                            
-                            alumnoNota.Nota = nuevaNota;
+
+                            alumnoNota.RegistrarNota(legajoNota, nuevaNota);
+                            Console.WriteLine(legajoNota + " " +nuevaNota); // NUEVA NOTA PRUEBA
                             Console.WriteLine("Nota actualizada correctamente.");
                         }
                         else
