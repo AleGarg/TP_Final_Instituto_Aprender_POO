@@ -935,11 +935,11 @@ namespace InstitutoAprender
                       Console.Write("Ingrese el legajo del alumno a eliminar:");
 
                       int legajoEliminar;
-                      while (True)
+                      while (true)
                       {
                           try
                           {
-                              legajoeliminar = Convert.ToInt32(Console.Readline());
+                              legajoEliminar = Convert.ToInt32(Console.Readline());
                               break; // Es correcto si llega hasta aca 
                           }
                          catch 
@@ -950,8 +950,8 @@ namespace InstitutoAprender
                       }    
                            try
                            {
-                               Alumno alumnoeliminar = AprenderMas.BuscarAlumnoPorLegajo(legajoeliminar);
-                               if (alumnoeliminar !null)
+                               Alumno alumnoeliminar = AprenderMas.BuscarAlumnoPorLegajo(legajoEliminar);
+                               if (alumnoEliminar !null)
                                {
                                    AprenderMas.EliminarAlumno(alumnoEliminar);
                                    Console.WriteLine("Alumno eliminado correctamente.");
@@ -965,16 +965,9 @@ namespace InstitutoAprender
                                {
                                    Console.WriteLine("Error inesperado: " + ex.Message);
                                } 
-                               break;  
-    
-   
-                          
-                        
+                               break; 
 
-         
-    
-
-                        case 12: // LISTAR TODOS LOS ALUMNOS DEL INSTITUTO
+                      case 12: // LISTAR TODOS LOS ALUMNOS DEL INSTITUTO
                         Console.WriteLine("=== Lista de alumnos del instituto ===");
                         AprenderMas.ListarTodosLosAlumnos();
                         break;
