@@ -233,7 +233,7 @@ namespace InstitutoAprender
             Console.WriteLine("\nPromedios por curso:");
             foreach (Curso c in ListaCursos)
             {
-                Console.WriteLine("- " + c.Nombre + ": " + c.Promedio());
+                Console.WriteLine("- " + c.Nombre + ": " + c.Promedio().ToString("F2"));
             }
         }
     }

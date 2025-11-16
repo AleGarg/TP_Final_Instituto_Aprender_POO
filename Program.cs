@@ -491,7 +491,7 @@ namespace InstitutoAprender
 
                                                             if (notaA < 1 || notaA > 10)
                                                             {
-                                                                throw new ArgumentOutOfRangeException("El valor debe estar entre 1 y 10.");
+                                                                throw new ArgumentOutOfRangeException();
                                                             }
 
                                                             nuevo.RegistrarNota(cursoAnadir.Identificador, notaA);
@@ -723,29 +723,66 @@ namespace InstitutoAprender
 
                     case 3: // CAMBIAR NOTA DE ALUMNO (Registrar nota de examen para un alumno en un curso.)
 
-                        // MOSTRAR TODOS LOS ALUMNOS
-                        AprenderMas.ListarTodosLosAlumnos();
+                        // Para poner nota de un alumno, necesitamos:
+                        // Legajo del alumno - Identificador del curso - Nueva nota (double) - VERIFICAR SI EL ALUMNO ESTÁ EN ESE CURSO
 
-                        int legajoNota;
+                        Alumno alumnoNota;
+                        Curso cursoNota;
+                        double nuevaNota;
+
+                        // PEDIMOS UN ALUMNO 
                         while (true)
                         {
                             try
                             {
-                                Console.Write("\nLegajo: ");
-                                legajoNota = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine("=== Registrar Nota ===");
+                                AprenderMas.ListarTodosLosAlumnos(); // Mostramos alumnos
+                                Console.Write("\nLegajo del Alumno: ");
 
-                                // VERIFICAR SI EL LEGAJO EXISTE
-                                bool existeLegajo = false;
-                                foreach (Alumno a in AprenderMas.ListaAlumnos)
-                                {
-                                    if (a.Legajo == legajoNota)
-                                    {
-                                        existeLegajo = true;
-                                    }
-                                }
-                                if (existeLegajo == false)
+                                int legajo = Convert.ToInt32(Console.ReadLine());
+                                alumnoNota = AprenderMas.BuscarAlumnoPorLegajo(legajo);
+
+                                if (alumnoNota == null)
                                 {
                                     throw new Exception("No se encontró ningún alumno con ese legajo.");
+                                }
+                                break;
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("\nError: Solo se pueden ingresar números.");
+                                Console.WriteLine("Presione una tecla para continuar...\n");
+                                Console.ReadKey(true);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("\nError: " + ex.Message);
+                                Console.WriteLine("Presione una tecla para continuar...\n");
+                                Console.ReadKey(true);
+                            }
+                        }
+
+                        // PEDIMOS UN CURSO VÁLIDO (Y QUE EL ALUMNO ESTÉ EN ÉL)
+                        while (true)
+                        {
+                            try
+                            {
+                                Console.WriteLine("\nCursos disponibles:");
+                                AprenderMas.ListarCursos(); // Mostramos cursos
+                                Console.Write("\nIdentificador del Curso: ");
+
+                                int idCurso = Convert.ToInt32(Console.ReadLine());
+                                cursoNota = AprenderMas.BuscarCursoPorIdentificador(idCurso);
+
+                                if (cursoNota == null)
+                                {
+                                    throw new Exception("No se encontró ningún curso con ese identificador.");
+                                }
+
+                                // Verificamos si el alumno está inscrito en el curso. Si no lo está, tiramos error.
+                                if (!cursoNota.Inscriptos.Contains(alumnoNota))
+                                {
+                                    throw new Exception("El alumno " + alumnoNota.Nombre + " " + alumnoNota.Nombre + " no está inscripto en el curso " + cursoNota.Nombre + ".");
                                 }
 
                                 break;
@@ -755,61 +792,51 @@ namespace InstitutoAprender
                                 Console.WriteLine("\nError: Solo se pueden ingresar números.");
                                 Console.WriteLine("Presione una tecla para continuar...\n");
                                 Console.ReadKey(true);
-                                continue; // Vuelve al inicio del while
                             }
                             catch (Exception ex)
                             {
                                 Console.WriteLine("\nError: " + ex.Message);
                                 Console.WriteLine("Presione una tecla para continuar...\n");
                                 Console.ReadKey(true);
-                                continue; // Vuelve al inicio del while
                             }
                         }
 
-                        Alumno alumnoNota = AprenderMas.BuscarAlumnoPorLegajo(legajoNota);
-
-                        // Si alumnoNota existe:
-                        if (alumnoNota != null)
+                        // PEDIR NOTA VÁLIDA (1-10)
+                        while (true)
                         {
-                            double nuevaNota = 1;
-                            while (true)
+                            try
                             {
-                                try
-                                {
-                                    Console.Write("Ingrese nueva nota: ");
-                                    nuevaNota = Convert.ToDouble(Console.ReadLine());
+                                Console.Write("Ingrese la nueva nota para " + alumnoNota.Nombre + " " + alumnoNota.Apellido + " en " + cursoNota.Nombre + ": ");
 
-                                    if (nuevaNota < 1 || nuevaNota > 10)
-                                    {
-                                        throw new ArgumentOutOfRangeException();
-                                    }
+                                nuevaNota = Convert.ToDouble(Console.ReadLine());
 
-                                    break;
-                                }
-                                catch (FormatException)
+                                if (nuevaNota < 1 || nuevaNota > 10)
                                 {
-                                    Console.WriteLine("\nError: Solo se pueden ingresar números.");
-                                    Console.WriteLine("Presione una tecla para continuar...\n");
-                                    Console.ReadKey(true);
-                                    continue; // Vuelve al inicio del while
+                                    throw new ArgumentOutOfRangeException();
                                 }
-                                catch (ArgumentOutOfRangeException)
-                                {
-                                    Console.WriteLine("\nError: El valor debe estar entre 1 y 10.");
-                                    Console.WriteLine("Presione una tecla para continuar...");
-                                    Console.ReadKey(true);
-                                    continue; // Vuelve al inicio del while
-                                }
+
+                                break;
                             }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("\nError: Solo se pueden ingresar números.");
+                                Console.WriteLine("Presione una tecla para continuar...\n");
+                                Console.ReadKey(true);
+                            }
+                            catch (ArgumentOutOfRangeException)
+                            {
+                                Console.WriteLine("\nError: La nota debe estar entre 1 y 10.");
+                                Console.WriteLine("Presione una tecla para continuar...\n");
+                                Console.ReadKey(true);
+                            }
+                        }
 
-                            alumnoNota.RegistrarNota(legajoNota, nuevaNota);
-                            Console.WriteLine(legajoNota + " " + nuevaNota); // NUEVA NOTA PRUEBA
-                            Console.WriteLine("Nota actualizada correctamente.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Alumno no encontrado.");
-                        }
+                        // REGISTRAR LA NOTA
+                        alumnoNota.RegistrarNota(cursoNota.Identificador, nuevaNota);
+
+                        Console.WriteLine("\nNota actualizada correctamente.");
+                        Console.WriteLine("Alumno: " + alumnoNota.Legajo + " | Curso: " + cursoNota.Identificador + " (" + cursoNota.Nombre + ") | Nueva Nota: " + nuevaNota);
+
                         break;
 
                     case 4: // LISTAR ALUMNOS DE UN CURSO
@@ -879,46 +906,46 @@ namespace InstitutoAprender
                         AprenderMas.ListarTodosLosAlumnos();
 
                         // LEGAJO
-                        int legajotransferir;
+                        int legajoTransferir;
                         while (true)
                         {
-                            Console.Write("Legajo del pibe: ");
+                            Console.Write("\nLegajo del alumnno: ");
                             try
                             {
-                                legajotransferir = Convert.ToInt32(Console.ReadLine());
+                                legajoTransferir = Convert.ToInt32(Console.ReadLine());
                                 break;
                             }
                             catch (FormatException)
                             {
-                                Console.WriteLine("Error: ingrese solo números.\n");
+                                Console.WriteLine("\nError: Solo se pueden ingresar números.");
                             }
                         }
 
                         // CURSO ORIGEN
                         AprenderMas.ListarCursos();
-                        int cursoorigen;
+                        int cursoOrigen;
                         while (true)
                         {
-                            Console.Write("Curso origen: ");
+                            Console.Write("\nCurso origen: ");
                             try
                             {
-                                cursoorigen = Convert.ToInt32(Console.ReadLine());
+                                cursoOrigen = Convert.ToInt32(Console.ReadLine());
                                 break;
                             }
                             catch (FormatException)
                             {
-                                Console.WriteLine("Error: ingrese solo números.\n");
+                                Console.WriteLine("\nError: Solo se pueden ingresar números.");
                             }
                         }
 
                         // CURSO DESTINO
-                        int cursodestino;
+                        int cursoDestino;
                         while (true)
                         {
                             Console.Write("Curso destino: ");
                             try
                             {
-                                cursodestino = Convert.ToInt32(Console.ReadLine());
+                                cursoDestino = Convert.ToInt32(Console.ReadLine());
                                 break;
                             }
                             catch (FormatException)
@@ -927,11 +954,11 @@ namespace InstitutoAprender
                             }
                         }
 
-                        Alumno alumnotransferir = AprenderMas.BuscarAlumnoPorLegajo(legajotransferir);
-                        Curso origen = AprenderMas.BuscarCursoPorIdentificador(cursoorigen);
-                        Curso destino = AprenderMas.BuscarCursoPorIdentificador(cursodestino);
+                        Alumno alumnoTransferir = AprenderMas.BuscarAlumnoPorLegajo(legajoTransferir);
+                        Curso origen = AprenderMas.BuscarCursoPorIdentificador(cursoOrigen);
+                        Curso destino = AprenderMas.BuscarCursoPorIdentificador(cursoDestino);
 
-                       if (alumnotransferir == null)
+                        if (alumnoTransferir == null)
                         {
                             Console.WriteLine("ERROR: No existe un alumno con ese legajo.");
                             break;
@@ -949,23 +976,23 @@ namespace InstitutoAprender
                             break;
                         }
 
-                        if (!origen.Inscriptos.Contains(alumnotransferir))
+                        if (!origen.Inscriptos.Contains(alumnoTransferir))
                         {
                             Console.WriteLine("ERROR: El alumno no está inscripto en el curso de origen.");
                             break;
                         }
-                        if (destino.Inscriptos.Contains(alumnotransferir))
+                        if (destino.Inscriptos.Contains(alumnoTransferir))
                         {
                             Console.WriteLine("ERROR: El alumno ya está inscripto en el curso destino.");
                             break;
                         }
 
-                        origen.Inscriptos.Remove(alumnotransferir);
-                        destino.Inscriptos.Add(alumnotransferir);
+                        origen.Inscriptos.Remove(alumnoTransferir);
+                        destino.Inscriptos.Add(alumnoTransferir);
 
                         Console.WriteLine("Transferencia realizada correctamente.");
                         break;
-                                        
+
 
                     case 8: // MOSTRAR PROMEDIO DEL CURSO
                         Console.Write("Ingrese el identificador del curso: ");
