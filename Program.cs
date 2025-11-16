@@ -953,10 +953,42 @@ namespace InstitutoAprender
 
                     case 13: // AGREGAR ALUMNO EXISTENTE A UN CURSO
                         Console.WriteLine("=== Agregar alumno a curso ===");
-                        Console.Write("Legajo del alumno: ");
-                        int legajoAgregar = Convert.ToInt32(Console.ReadLine());
-                        Console.Write("identificador del curso: ");
-                        int identificadorCursoA = Convert.ToInt32(Console.ReadLine());
+
+                        int legajoAgregar;
+                        while (true)
+                        {
+                            try
+                            {
+                                Console.Write("\nLegajo del alumno: ");
+                                legajoAgregar = Convert.ToInt32(Console.ReadLine());
+                                break;
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("\nError: Solo se pueden ingresar números.");
+                                Console.WriteLine("Presione una tecla para continuar...\n");
+                                Console.ReadKey(true);
+                                continue; // Vuelve al inicio del while
+                            }
+                        }
+
+                        int identificadorCursoA;
+                        while (true)
+                        {
+                            try
+                            {
+                                Console.Write("\nIdentificador del curso: ");
+                                identificadorCursoA = Convert.ToInt32(Console.ReadLine());
+                                break;
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("\nError: Solo se pueden ingresar números.");
+                                Console.WriteLine("Presione una tecla para continuar...\n");
+                                Console.ReadKey(true);
+                                continue; // Vuelve al inicio del while
+                            }
+                        }
 
                         Alumno alumnoAgregar = AprenderMas.BuscarAlumnoPorLegajo(legajoAgregar);
                         Curso cursoA = AprenderMas.BuscarCursoPorIdentificador(identificadorCursoA);
