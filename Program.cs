@@ -939,7 +939,7 @@ namespace InstitutoAprender
                       {
                           try
                           {
-                              legajoEliminar = Convert.ToInt32(Console.Readline());
+                              legajoEliminar = Convert.ToInt32(Console.ReadLine());
                               break; // Es correcto si llega hasta aca 
                           }
                          catch 
@@ -950,7 +950,7 @@ namespace InstitutoAprender
                       }    
                            try
                            {
-                               Alumno alumnoeliminar = AprenderMas.BuscarAlumnoPorLegajo(legajoEliminar);
+                               Alumno alumnoEliminar = AprenderMas.BuscarAlumnoPorLegajo(legajoEliminar);
                                if (alumnoEliminar != null)
                                {
                                    AprenderMas.EliminarAlumno(alumnoEliminar);
