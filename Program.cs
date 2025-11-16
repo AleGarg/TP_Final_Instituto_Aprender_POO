@@ -951,7 +951,7 @@ namespace InstitutoAprender
                            try
                            {
                                Alumno alumnoeliminar = AprenderMas.BuscarAlumnoPorLegajo(legajoEliminar);
-                               if (alumnoEliminar !null)
+                               if (alumnoEliminar != null)
                                {
                                    AprenderMas.EliminarAlumno(alumnoEliminar);
                                    Console.WriteLine("Alumno eliminado correctamente.");
