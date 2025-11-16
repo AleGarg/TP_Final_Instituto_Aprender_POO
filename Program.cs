@@ -875,33 +875,97 @@ namespace InstitutoAprender
 
                     case 7: // TRANSFERIR ALUMO DE UN CURSO A OTRO
                         Console.WriteLine("=== Transferir alumno entre cursos ===");
+
                         AprenderMas.ListarTodosLosAlumnos();
-                        Console.Write("Legajo del alumno: ");
-                        int legajoT = Convert.ToInt32(Console.ReadLine());
 
+                        // LEGAJO
+                        int legajotransferir;
+                        while (true)
+                        {
+                            Console.Write("Legajo del pibe: ");
+                            try
+                            {
+                                legajotransferir = Convert.ToInt32(Console.ReadLine());
+                                break;
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("Error: ingrese solo números.\n");
+                            }
+                        }
+
+                        // CURSO ORIGEN
                         AprenderMas.ListarCursos();
-                        Console.Write("Curso origen: ");
-                        // MOSTRAR SOLO CURSOS EN LOS QUE ESTÉ EL ALUMNO
-
-                        int cursoO = Convert.ToInt32(Console.ReadLine());
-
-                        // MOSTRAR CURSOS EN LOS QUE NO ESTÉ EL ALUMNO
-                        Console.Write("Curso destino: ");
-                        int cursoD = Convert.ToInt32(Console.ReadLine());
-
-                        Alumno alumnoT = AprenderMas.BuscarAlumnoPorLegajo(legajoT);
-                        Curso origen = AprenderMas.BuscarCursoPorIdentificador(cursoO);
-                        Curso destino = AprenderMas.BuscarCursoPorIdentificador(cursoD);
-
-                        if (alumnoT != null && origen != null && destino != null)
+                        int cursoorigen;
+                        while (true)
                         {
-                            origen.transferirAlumnos(destino, alumnoT);
+                            Console.Write("Curso origen: ");
+                            try
+                            {
+                                cursoorigen = Convert.ToInt32(Console.ReadLine());
+                                break;
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("Error: ingrese solo números.\n");
+                            }
                         }
-                        else
+
+                        // CURSO DESTINO
+                        int cursodestino;
+                        while (true)
                         {
-                            Console.WriteLine("Alumno o curso no encontrado.");
+                            Console.Write("Curso destino: ");
+                            try
+                            {
+                                cursodestino = Convert.ToInt32(Console.ReadLine());
+                                break;
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine("Error: ingrese solo números.\n");
+                            }
                         }
+
+                        Alumno alumnotransferir = AprenderMas.BuscarAlumnoPorLegajo(legajotransferir);
+                        Curso origen = AprenderMas.BuscarCursoPorIdentificador(cursoorigen);
+                        Curso destino = AprenderMas.BuscarCursoPorIdentificador(cursodestino);
+
+                       if (alumnotransferir == null)
+                        {
+                            Console.WriteLine("ERROR: No existe un alumno con ese legajo.");
+                            break;
+                        }
+
+                        if (origen == null)
+                        {
+                            Console.WriteLine("ERROR: El curso de origen no existe.");
+                            break;
+                        }
+
+                        if (destino == null)
+                        {
+                            Console.WriteLine("ERROR: El curso destino no existe.");
+                            break;
+                        }
+
+                        if (!origen.Inscriptos.Contains(alumnotransferir))
+                        {
+                            Console.WriteLine("ERROR: El alumno no está inscripto en el curso de origen.");
+                            break;
+                        }
+                        if (destino.Inscriptos.Contains(alumnotransferir))
+                        {
+                            Console.WriteLine("ERROR: El alumno ya está inscripto en el curso destino.");
+                            break;
+                        }
+
+                        origen.Inscriptos.Remove(alumnotransferir);
+                        destino.Inscriptos.Add(alumnotransferir);
+
+                        Console.WriteLine("Transferencia realizada correctamente.");
                         break;
+                                        
 
                     case 8: // MOSTRAR PROMEDIO DEL CURSO
                         Console.Write("Ingrese el identificador del curso: ");
