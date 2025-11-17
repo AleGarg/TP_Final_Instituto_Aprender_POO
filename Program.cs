@@ -356,7 +356,7 @@ namespace InstitutoAprender
                         // Intentamos añadir alumno a un curso por primera vez
                         while (true)
                         {
-                            Console.WriteLine("\nITERACIÓN " + iteracion + "\n");
+                            // Console.WriteLine("\nITERACIÓN " + iteracion + "\n");
                             try
                             {
                                 if (iteracion == 0)
@@ -561,7 +561,7 @@ namespace InstitutoAprender
 
                     case 2: // ELIMINAR ALUMNO DE UN CURSO
 
-                        if(AprenderMas.CantidadTotalInscriptos() == 0)
+                        if (AprenderMas.CantidadTotalInscriptos() == 0)
                         {
                             Console.WriteLine("No hay alumnos para eliminar.");
                             break;
@@ -727,7 +727,7 @@ namespace InstitutoAprender
 
                     case 3: // CAMBIAR NOTA DE ALUMNO (Registrar nota de examen para un alumno en un curso.)
 
-                        if(AprenderMas.CantidadTotalInscriptos() == 0)
+                        if (AprenderMas.CantidadTotalInscriptos() == 0)
                         {
                             Console.WriteLine("No hay alumnos para cambiar su nota.");
                             break;
@@ -739,6 +739,7 @@ namespace InstitutoAprender
                         Alumno alumnoNota;
                         Curso cursoNota;
                         double nuevaNota;
+                        int legajo;
 
                         // PEDIMOS UN ALUMNO 
                         while (true)
@@ -749,7 +750,7 @@ namespace InstitutoAprender
                                 AprenderMas.ListarTodosLosAlumnos(); // Mostramos alumnos
                                 Console.Write("\nLegajo del Alumno: ");
 
-                                int legajo = Convert.ToInt32(Console.ReadLine());
+                                legajo = Convert.ToInt32(Console.ReadLine());
                                 alumnoNota = AprenderMas.BuscarAlumnoPorLegajo(legajo);
 
                                 if (alumnoNota == null)
@@ -772,13 +773,40 @@ namespace InstitutoAprender
                             }
                         }
 
+                        // ESTA EN CURSO?
+                        bool estaEnAlgunCursoCamNota = false;
+                        bool tituloImpresoCamNota = false;
+                        foreach (Curso c in AprenderMas.ListaCursos)
+                        {
+                            foreach (Alumno a in c.Inscriptos)
+                            {
+                                if (a.Legajo == legajo)
+                                {
+                                    if (!tituloImpresoCamNota)
+                                    {
+                                        Console.WriteLine("\nEl alumno está en estos cursos:");
+                                        tituloImpresoCamNota = true;
+                                    }
+
+                                    estaEnAlgunCursoCamNota = true;
+                                    c.MostrarDatos();
+
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (estaEnAlgunCursoCamNota == false)
+                        {
+                            Console.WriteLine("El alumno no está en ningún curso.\n");
+                            break;
+                        }
+
                         // PEDIMOS UN CURSO VÁLIDO (Y QUE EL ALUMNO ESTÉ EN ÉL)
                         while (true)
                         {
                             try
                             {
-                                Console.WriteLine("\nCursos disponibles:");
-                                AprenderMas.ListarCursos(); // Mostramos cursos
                                 Console.Write("\nIdentificador del Curso: ");
 
                                 int idCurso = Convert.ToInt32(Console.ReadLine());

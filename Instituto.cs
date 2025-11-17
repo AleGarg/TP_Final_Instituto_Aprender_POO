@@ -176,12 +176,13 @@ namespace InstitutoAprender
         // 6. Listar alumnos inscriptos en más de un curso
         public void ListarAlumnosMultiplesCursos()
         {
+            // Hacemos un diccionario con Alumno como clave, y el int que almacena las veces que aparece en un curso
             Dictionary<Alumno, int> conteoInscripciones = new Dictionary<Alumno, int>();
             foreach (Curso c in ListaCursos)
             {
                 foreach (Alumno alumno in c.Inscriptos)
                 {   
-                    // Comprobar si Alumno ya existe
+                    // Comprobar si Alumno ya existe y apareció al menos una vez
                     if (conteoInscripciones.ContainsKey(alumno))
                     {
                         conteoInscripciones[alumno]++;
@@ -197,6 +198,7 @@ namespace InstitutoAprender
             bool seEncontraronAlumnos = false;
             
             // Recorremos el diccionario (pares de Alumno-Conteo)
+            // par.Key es el Alumno, par.Value es el conteo
             foreach (KeyValuePair<Alumno, int> par in conteoInscripciones)
             {
                 // Si el contador es mayor a 1, es decir que está en más de un curso:
@@ -204,7 +206,7 @@ namespace InstitutoAprender
                 {
                     // par.Key es el Alumno, par.Value es el conteo
                     par.Key.MostrarDatos();
-                    Console.WriteLine(" (Inscripto en " + par.Value+ " cursos)");
+                    Console.WriteLine(" (Inscripto en " + par.Value + " cursos)");
                     seEncontraronAlumnos = true;
                 }
             }
