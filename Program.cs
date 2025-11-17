@@ -8,9 +8,6 @@ namespace InstitutoAprender
     {
         static void Main(string[] args)
         {
-
-            
-
             Console.WriteLine("======== Comienzo ========");
 
             Console.WriteLine("¿Desea precargar datos para verificar el funcionamiento del sistema? Escriba SI o NO");
