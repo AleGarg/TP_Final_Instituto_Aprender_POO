@@ -9,7 +9,7 @@ namespace InstitutoAprender
         static void Main(string[] args)
         {
 
-            // PREGUNTAR POR LO DEL DICCIONARIO PARA NOTAS
+            
 
             Console.WriteLine("======== Comienzo ========");
 
