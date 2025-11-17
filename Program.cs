@@ -1035,24 +1035,52 @@ namespace InstitutoAprender
 
 
                     case 8: // MOSTRAR PROMEDIO DEL CURSO
-
+                     
                         if(AprenderMas.CantidadTotalInscriptos() == 0)
                         {
-                            Console.WriteLine("No hay alumnos para promediar.");
+                            Console.WriteLine("No hay alumnos para mostrar promedio.");
                             break;
                         }
 
-                        Console.Write("Ingrese el identificador del curso: ");
-                        int identificadorCursoP = Convert.ToInt32(Console.ReadLine());
-                        Curso cursoP = AprenderMas.BuscarCursoPorIdentificador(identificadorCursoP);
-                        if (cursoP != null)
+                        Console.WriteLine("=== Mostrar promedio del curso ===");
+
+                        int identificadorCursoPromedio;
+                        AprenderMas.ListarCursos();
+                        while (true)
                         {
-                            Console.WriteLine("Promedio del curso " + cursoP.Nombre + ": " + cursoP.Promedio().ToString("F2"));
+                            try
+                            {
+                                Console.Write("\nIngrese el identificador del curso: ");
+                                identificadorCursoPromedio = Convert.ToInt32(Console.ReadLine());
+                                break;
+                            }
+                            catch (FormatException)
+                          {
+                                Console.WriteLine("\nError: Solo se pueden ingresar números.");
+                                Console.WriteLine("Presione una tecla para continuar...\n");
+                                Console.ReadKey(true);
+                            }
+                        }
+
+                        Curso cursoPromedio = AprenderMas.BuscarCursoPorIdentificador(identificadorCursoPromedio);
+
+                        if (cursoPromedio == null)
+                        {
+                            Console.WriteLine("No se encontró ningún curso con ese identificador.");
+                            break;
+                        }
+
+                        double promedio = cursoPromedio.Promedio();
+
+                        if (double.IsNaN(promedio))
+                        {
+                            Console.WriteLine("No hay notas registradas en este curso.");
                         }
                         else
                         {
-                            Console.WriteLine("Curso no encontrado.");
+                            Console.WriteLine($"El promedio del curso {cursoPromedio.Nombre} es: {promedio:F2}");
                         }
+
                         break;
 
                     case 9: // GUARDAR JSON
